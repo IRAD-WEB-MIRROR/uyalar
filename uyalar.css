@@ -1,0 +1,39 @@
+
+body{margin:0;background:#e9eef5 url(img/bg.gif);font:13px/1.45 Verdana,Tahoma,Arial,sans-serif;color:#222}
+a{color:#1f4f99}a:visited{color:#6a3d99}a:hover{color:#e06a00}
+#wrap{width:770px;max-width:100%;margin:0 auto;background:#fff;border-left:1px solid #9ab;border-right:1px solid #9ab}
+#top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:6px 10px;background:#fff}
+#top .login{font-size:11px;background:#f3f7fc;border:1px solid #c5d3e6;padding:4px 6px}
+#top .login input{font-size:11px;width:80px}
+#menu{background:linear-gradient(#3d72c4,#24508f);border-top:2px solid #f08a1c;padding:0 4px}
+#menu a{display:inline-block;color:#fff;font:bold 12px Tahoma,Arial,sans-serif;padding:6px 10px;text-decoration:none;border-right:1px solid #5b8ad2}
+#menu a:hover,#menu a.on{background:#f08a1c}
+#cols{display:flex;flex-wrap:wrap}
+#left{width:180px;padding:8px;background:#f6f8fb;border-right:1px solid #dde4ee}
+#main{flex:1;min-width:280px;padding:8px 12px}
+#right{width:190px;padding:8px;background:#fffaf0;border-left:1px solid #f1dcc0}
+h1{font:bold 20px Tahoma,Arial,sans-serif;color:#24508f;margin:4px 0 10px}
+h2{font:bold 14px Tahoma,Arial,sans-serif;color:#fff;background:#f08a1c;padding:3px 6px;margin:12px 0 6px}
+h3{font:bold 13px Tahoma,Arial,sans-serif;color:#24508f;margin:10px 0 4px}
+.box{border:1px solid #c5d3e6;background:#fff;margin-bottom:10px}
+.box .t{background:#dbe6f5;font:bold 11px Tahoma,Arial,sans-serif;padding:3px 6px;color:#24508f}
+.box .c{padding:5px 6px;font-size:11px}
+.big{display:block;text-align:center;background:linear-gradient(#ffb04a,#e86f00);color:#fff!important;font:bold 15px Tahoma,Arial,sans-serif;padding:10px 4px;border:1px solid #b55400;border-radius:6px;text-decoration:none;margin-bottom:10px}
+.news p{margin:2px 0 10px}.news b{color:#c25a00}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+.cats a{font-weight:bold}.cats span{display:block;font-size:11px;color:#666}
+table.rate{border-collapse:collapse;width:100%;font-size:11px}
+table.rate td,table.rate th{border:1px solid #cdd8e6;padding:3px 5px}
+table.rate th{background:#24508f;color:#fff}
+table.rate tr:nth-child(even) td{background:#f4f7fb}
+.small{font-size:10px;color:#777}
+#foot{border-top:2px solid #f08a1c;background:#24508f;color:#cfe0f7;font-size:10px;padding:8px;text-align:center}
+#foot a{color:#fff}
+.cnt img{margin:2px}
+form.reg td{padding:3px 4px;font-size:12px}
+.ok{background:#eaffea;border:1px solid #6b6;padding:10px;display:none}
+.forum{border-collapse:collapse;width:100%;font-size:12px}
+.forum td,.forum th{border:1px solid #b9c7da;padding:4px 6px}.forum th{background:#3d72c4;color:#fff}
+.post{border:1px solid #b9c7da;margin-bottom:6px}.post .h{background:#e3ebf6;font-size:11px;padding:3px 6px}
+.post .b{padding:6px}
+@media (max-width:700px){#left,#right{width:100%;border:0}.cats{grid-template-columns:1fr}#menu a{padding:6px 7px}}

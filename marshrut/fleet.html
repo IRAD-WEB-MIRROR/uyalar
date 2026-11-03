@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fleet · MARSHRUT</title>
+<meta name="description" content="a Talas transit shrine: the network map, line diagrams, the fleet drawn to scale, timetables and my end-to-end list. 2 som at a time. by adik">
+<meta name="keywords" content="marshrutka, маршрутка, bus, автобус, Talas, Талас, route map, схема, timetable, расписание, Yutong, LiAZ, Ikarus, PAZ, Sprinter">
+<link rel="canonical" href="https://uyalar.net/marshrut/fleet.html">
+<meta property="og:title" content="fleet · MARSHRUT">
+<meta property="og:description" content="a Talas transit shrine: the network map, line diagrams, the fleet drawn to scale, timetables and my end-to-end list. 2 som at a time. by adik">
+<meta property="og:url" content="https://uyalar.net/marshrut/fleet.html">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+:root{--ink:#111;--paper:#efede6;--red:#e2231a;--amb:#ffb000}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 Archivo,Arial,Helvetica,sans-serif}
+a{color:var(--ink);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{background:var(--ink);color:var(--paper)}
+.led{background:#0b0b0b;padding:14px 12px 10px;text-align:center;border-bottom:8px solid var(--red)}
+.led img{display:block;margin:0 auto;width:min(100%,900px);height:auto;image-rendering:auto}
+.led p{margin:8px 0 0;color:#8a8a8a;font:12px 'JetBrains Mono',monospace;letter-spacing:1px}
+.menu{display:flex;flex-wrap:wrap;max-width:1000px;margin:0 auto;border-left:2px solid var(--ink)}
+.menu a{flex:1 1 auto;text-align:center;padding:10px 12px;border:2px solid var(--ink);border-left:0;border-top:0;text-decoration:none;font:800 15px Archivo,Arial,sans-serif;text-transform:uppercase;letter-spacing:.5px;background:#fff}
+.menu a:hover{background:var(--amb);color:var(--ink)}
+.menu a b{display:inline-block;min-width:22px;padding:0 4px;margin-right:6px;background:var(--ink);color:#fff;font-weight:800}
+.wrap{max-width:1000px;margin:0 auto;padding:18px 16px 8px}
+h1{font:900 clamp(34px,7vw,64px)/.95 Archivo,Arial,sans-serif;letter-spacing:-1.5px;margin:6px 0 14px;text-transform:uppercase}
+h2{font:900 26px/1.1 Archivo,Arial,sans-serif;text-transform:uppercase;letter-spacing:-.5px;margin:28px 0 10px;padding-top:8px;border-top:6px solid var(--ink)}
+h3{font:800 18px Archivo,Arial,sans-serif;margin:16px 0 6px}
+.lead{font-size:19px;line-height:1.45;max-width:760px}
+.cols{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.box{border:2px solid var(--ink);background:#fff;padding:12px 14px}
+.box.y{background:var(--amb)}
+.mono,pre,code{font-family:'JetBrains Mono',monospace}
+.no{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:30px;padding:0 6px;font:900 17px Archivo,Arial,sans-serif;color:#fff;background:var(--c,#111);vertical-align:middle}
+.no.m{border-radius:15px;min-width:42px;background:#fff;color:#111;border:3px solid var(--c,#111)}
+.no.s{min-width:24px;height:20px;font-size:12px;padding:0 3px}.no.m.s{border-width:2px;min-width:28px;border-radius:10px}
+.mapbox{border:2px solid var(--ink);background:#fff;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.mapbox svg{display:block;width:100%;min-width:860px;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.legend button{font:700 13px Archivo,Arial,sans-serif;border:2px solid var(--ink);background:#fff;padding:3px 8px 3px 4px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.legend button.on{background:var(--ink);color:#fff}
+svg.hl .rt{opacity:.1}svg.hl .rt.on{opacity:1}
+.hint{font:12px 'JetBrains Mono',monospace;color:#555}
+.log p{margin:0;padding:6px 0;border-bottom:1px solid #bbb;font-size:15px}.log b{font-family:'JetBrains Mono',monospace}
+.friends{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.friends img{image-rendering:pixelated;display:block;border:0}
+.lines{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.line{border:2px solid var(--ink);background:#fff}
+.line .hd{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:2px solid var(--ink)}
+.line .hd h3{margin:0;font-size:17px;line-height:1.15}
+.line .hd small{display:block;font:12px 'JetBrains Mono',monospace;color:#555;font-weight:400}
+.strip{list-style:none;margin:0;padding:10px 12px 12px 12px}
+.strip li{position:relative;padding:3px 0 3px 30px;min-height:26px;font-size:14px;line-height:1.25}
+.strip li:before{content:"";position:absolute;left:8px;top:0;bottom:0;width:7px;background:var(--c)}
+.strip li:first-child:before{top:10px}.strip li:last-child:before{bottom:calc(100% - 12px)}
+.strip li:after{content:"";position:absolute;left:5px;top:6px;width:9px;height:9px;border:2px solid var(--ink);background:#fff;border-radius:50%}
+.strip li.t{font-weight:800}.strip li.t:after{left:1px;top:3px;width:17px;height:15px;border-radius:0;border-width:3px}
+.strip li i{display:block;font:11px 'JetBrains Mono',monospace;color:#666;font-style:normal}
+.strip li .x{display:inline-flex;gap:3px;margin-left:4px;vertical-align:1px;flex-wrap:wrap}
+.strip li .x span{font:700 10px Archivo,sans-serif;padding:0 3px;border:1.5px solid #111;line-height:13px}
+.strip li .x span.b{background:#111;color:#fff}
+.strip li em{display:block;font:italic 13px Archivo,sans-serif;color:#a0140c}
+.fleet{display:grid;gap:22px}
+.veh{border:2px solid var(--ink);background:#fff}
+.veh .pic{background:#fff;border-bottom:2px solid var(--ink);padding:10px 8px 0;overflow:hidden}
+.veh .pic img{display:block;max-width:100%;height:auto}
+.veh .tx{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:12px 14px}
+@media(max-width:620px){.veh .tx{grid-template-columns:1fr}}
+.veh h3{margin:0;font-size:22px;line-height:1.1}
+.veh dl{margin:6px 0 0;font:12.5px/1.5 'JetBrains Mono',monospace}.veh dt{color:#666}.veh dd{margin:0 0 4px}
+.veh p{margin:0 0 8px}
+.ruler{font:12px 'JetBrains Mono',monospace;border-top:2px solid #111;display:flex;justify-content:space-between;max-width:700px;padding-top:2px}
+.tt{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:18px}
+.tbl{border:2px solid var(--ink);background:#fff}
+.tbl .hd{display:flex;gap:10px;align-items:center;padding:8px 10px;border-bottom:2px solid var(--ink);background:#fff}
+.tbl .hd h3{margin:0;font-size:16px;line-height:1.2}
+.tbl pre{margin:0;padding:10px 12px;font-size:13px;line-height:1.55;overflow-x:auto;white-space:pre}
+.tbl pre b{background:var(--amb)}
+.seg{display:inline-flex;border:2px solid var(--ink);margin:6px 0 12px}
+.seg button{font:800 14px Archivo,sans-serif;border:0;background:#fff;padding:6px 14px;cursor:pointer;text-transform:uppercase}
+.seg button.on{background:var(--ink);color:#fff}
+.w{display:none}body.winter .w{display:block}body.winter .s{display:none}
+.prog{height:22px;border:2px solid var(--ink);background:#fff;position:relative;margin:4px 0 12px}
+.prog i{position:absolute;left:0;top:0;bottom:0;background:var(--red)}.prog i.v{background:var(--amb);height:50%;top:auto}
+.rlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
+.rlist label{display:grid;grid-template-columns:48px 1fr 26px 22px;gap:6px;align-items:center;padding:5px 8px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);background:#fff;font-size:13px;line-height:1.2;cursor:pointer}
+.rlist label:hover{background:#fff4d6}
+.rlist label.off{background:#e3e1da;color:#777}
+.rlist label small{display:block;font:11px 'JetBrains Mono',monospace;color:#666}
+.rlist .me{font:800 11px 'JetBrains Mono',monospace;text-align:center;color:#fff;background:var(--red);line-height:18px}
+.rlist .me.n{background:none;color:#bbb}
+.rlist input{width:18px;height:18px;accent-color:#111;margin:0}
+.rec td,.rec th{text-align:left;padding:5px 8px;border-bottom:1px solid #bbb;vertical-align:top}.rec{border-collapse:collapse;width:100%;font-size:14px}
+.rec th{font:700 12px 'JetBrains Mono',monospace;color:#555}
+.gb-intro{font-weight:700}.gb-form{border:2px solid var(--ink);background:#fff;padding:10px;max-width:520px}.gb-form input,.gb-form textarea{border:2px solid #111;font:14px 'JetBrains Mono',monospace;max-width:100%}
+.gb-form input[type=submit]{background:var(--red);color:#fff;font:800 14px Archivo,sans-serif;padding:6px 14px;cursor:pointer}
+.gb-note{font:700 14px 'JetBrains Mono',monospace;background:var(--amb);padding:8px;border:2px solid #111}
+.gb-entry{border-top:2px solid var(--ink);padding:10px 0}.gb-date{font:12px 'JetBrains Mono',monospace;color:#666}.gb-reply{margin:6px 0 0 18px;padding-left:10px;border-left:6px solid var(--red)}
+.gb-form table{width:100%}.gb-form input[type=text],.gb-form textarea{width:100%}.gb-form td{padding:2px}
+.foot{max-width:1000px;margin:10px auto 0;padding:14px 16px 30px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;border-top:6px solid var(--ink);font:12px/1.5 'JetBrains Mono',monospace}
+.foot p{margin:0;max-width:640px}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-torgoy.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="led"><img src="led.png" width="900" height="112" alt="MARSHRUT · Talas"><p>EVERY BUS AND MARSHRUTKA IN TALAS · 2 SOM AT A TIME · SINCE 2025</p></div>
+<nav class="menu"><a href="index.html"><b>1</b>map</a><a href="lines.html"><b>2</b>lines</a><a href="fleet.html"><b>3</b>fleet</a><a href="times.html"><b>4</b>timetables</a><a href="ridden.html"><b>5</b>end to end</a><a href="guestbook.html"><b>!</b>Guestbook</a></nav><div class="wrap"><h1>Fleet</h1><p class="lead">What carries Talas. The Bus Park has 71 buses: 38 Yutong ZK6108, 21 LiAZ-5256, 9 PAZ-3205 and 3 Ikarus 280. The marshrutkas belong to some twenty carriers, and the register says which type runs on each route. I drew one of each, plus one that isn't there.</p>
+<p class="hint">all drawings to the same scale (the metres are under each one), right side, facing right: the doors side</p><div class="fleet"><div class="veh" id="yutong"><div class="pic"><img src="v-yutong.png" width="700" height="158" alt="Yutong ZK6108, side view"></div><div class="tx"><div><h3>Yutong ZK6108</h3><dl><dt>type</dt><dd>MUNICIPAL BUS · Talas City Bus Park</dd><dt>how many</dt><dd>38 in the Bus Park (2021-2025)</dd><dt>length</dt><dd>10.5 m</dd><dt>where</dt><dd>routes 4 and 11 above all, also 2, 10, 16</dd></dl></div><div><p>The new ones. Bought on the city budget in 2021-2025, the last twelve in June 2025 for routes 4 and 11. Air-conditioning (keep the windows shut, says the Bus Park). The side screen shows the number and the end. The mirrors stick out in front like a snail's eyes, which is why the Bus Park's logo bus has them.</p></div></div></div><div class="veh" id="liaz"><div class="pic"><img src="v-liaz.png" width="700" height="158" alt="LiAZ-5256, side view"></div><div class="tx"><div><h3>LiAZ-5256</h3><dl><dt>type</dt><dd>MUNICIPAL BUS · Talas City Bus Park</dd><dt>how many</dt><dd>21 (built 1994-2003)</dd><dt>length</dt><dd>11.4 m</dd><dt>where</dt><dd>routes 1, 5, 14, 31, and the reserve</dd></dl></div><div><p>The workhorse of my childhood. The doors hiss. The heater under the seat by the middle door is the best seat in Talas in January. The Bus Park asks you to close the doors behind you on the old LiAZ buses, and you should, because nobody else will.</p></div></div></div><div class="veh" id="ikarus"><div class="pic"><img src="v-ikarus.png" width="700" height="158" alt="Ikarus 280, side view"></div><div class="tx"><div><h3>Ikarus 280</h3><dl><dt>type</dt><dd>MUNICIPAL BUS · Talas City Bus Park</dd><dt>how many</dt><dd>3 (articulated)</dd><dt>length</dt><dd>16.5 m</dd><dt>where</dt><dd>one on route 1 at peak times</dd></dl></div><div><p>The legend. Three are left, and one comes out on route 1 in the rush hours. Stand on the turntable in the middle (the round floor in the bellows) and feel the bend at Liberty Boulevard. My white whale for a year: I finally rode it CBS to Communications Square on 14.04.2025.</p></div></div></div><div class="veh" id="paz"><div class="pic"><img src="v-paz.png" width="700" height="158" alt="PAZ-3205, side view"></div><div class="tx"><div><h3>PAZ-3205</h3><dl><dt>type</dt><dd>MUNICIPAL BUS · Talas City Bus Park</dd><dt>how many</dt><dd>9</dd><dt>length</dt><dd>7.0 m</dd><dt>where</dt><dd>spare; school trips; quiet hours</dd></dl></div><div><p>The small round one. You hear it before you see it. Sometimes it covers a route at night when a big bus is in the workshop, and then 40 people try to fit in a bus for 23.</p></div></div></div><div class="veh" id="sprinter"><div class="pic"><img src="v-sprinter.png" width="700" height="158" alt="Mercedes Sprinter, side view"></div><div class="tx"><div><h3>Mercedes Sprinter</h3><dl><dt>type</dt><dd>MARSHRUTKA · private carriers</dd><dt>how many</dt><dd>39 routes of 126</dd><dt>length</dt><dd>~7 m</dd><dt>where</dt><dd>40, 7, 18, 27, 66 and many more</dd></dl></div><div><p>The real marshrutka. High roof, sliding door, a number card behind the windscreen and a second one in the side window. The 40 runs 12 of them, Cottonwood to the eastern edge, 84 minutes, my longest ride.</p></div></div></div><div class="veh" id="transit"><div class="pic"><img src="v-transit.png" width="700" height="158" alt="Ford Transit, side view"></div><div class="tx"><div><h3>Ford Transit</h3><dl><dt>type</dt><dd>MARSHRUTKA · private carriers</dd><dt>how many</dt><dd>30 routes</dd><dt>length</dt><dd>~6.7 m</dd><dt>where</dt><dd>3, 31, 33, 44 and others</dd></dl></div><div><p>The other real marshrutka. Lower than the Sprinter, so tall people bow to everyone when they get in. The 3 from Semiz runs 15 of them, every 7 minutes.</p></div></div></div><div class="veh" id="county"><div class="pic"><img src="v-county.png" width="700" height="158" alt="Hyundai County, side view"></div><div class="tx"><div><h3>Hyundai County</h3><dl><dt>type</dt><dd>MARSHRUTKA · private carriers</dd><dt>how many</dt><dd>20 routes</dd><dt>length</dt><dd>~7.1 m</dd><dt>where</dt><dd>22 (15 of them), 15, 64, 79, 105, 124</dd></dl></div><div><p>A small bus with a nose, not a van. The 22 runs on these. In Tima's comic (m22) Ermek-baike drives a white Sprinter. In real life the 22 is a County. Tima says it's artistic licence. Ermek-baike says nothing. I accept it.</p></div></div></div><div class="veh" id="foton"><div class="pic"><img src="v-foton.png" width="700" height="158" alt="Foton View, side view"></div><div class="tx"><div><h3>Foton View</h3><dl><dt>type</dt><dd>MARSHRUTKA · private carriers</dd><dt>how many</dt><dd>21 routes</dd><dt>length</dt><dd>~5.3 m</dd><dt>where</dt><dd>9, 6, 23, 34 and others</dd></dl></div><div><p>Short, square, newer. The 9 runs on these, TSU to the Hippodrome. The seats are small and the windows are big, so on the 9 you see the whole city on the way to the races.</p></div></div></div><div class="veh" id="gazelle"><div class="pic"><img src="v-gazelle.png" width="700" height="158" alt="GAZelle Next, side view"></div><div class="tx"><div><h3>GAZelle Next</h3><dl><dt>type</dt><dd>MARSHRUTKA · private carriers</dd><dt>how many</dt><dd>16 routes</dd><dt>length</dt><dd>~6.5 m</dd><dt>where</dt><dd>52, 47, 48, 58, 67</dd></dl></div><div><p>Yellow, mostly. The 52 to Semiz runs 9 of them. The engine is loud and the music is louder.</p></div></div></div><div class="veh" id="trolley"><div class="pic"><img src="v-trolley.png" width="700" height="186" alt="the trolleybus, side view"></div><div class="tx"><div><h3>the trolleybus</h3><dl><dt>type</dt><dd>TROLLEYBUS · closed 2004</dd><dt>how many</dt><dd>until 2004</dd><dt>length</dt><dd>~12 m</dd><dt>where</dt><dd>1, 2, 4, 5 (the buses took the numbers)</dd></dl></div><div><p>I never saw it: Talas closed its trolleybus in 2004, two years before I was born, and the wires came down in 2005. My father rode the 4 to school. I drew it in dashes from what he told me. Nurzhan still has four trolleybus routes, and I am going to ride them all.</p></div></div></div></div></div><div class="tunduk-ring" style="text-align:center;margin:28px auto 8px;font:600 13px Archivo,Arial,sans-serif;color:#111;background:#fff;border:2px solid #111;max-width:440px;padding:6px 8px"><a href="../crawl/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../shyrdak/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../crawl/index.html','../shyrdak/index.html','../asman/index.html','../podval/index.html','../intourist/index.html','../tush/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div><div class="foot"><p>adik · Talas, Station District · stops, routes, times and carriers from the Bus Park site (transport.talas.iradgov.org), checked from a seat by the window. not official. if the 22 does not come, it is not my fault.</p><a href="../top100.html"><img src="../img/cnt-marshrut.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bestiary</title>
+<meta name="description" content="unofficial fan guide to Steppe Crawl, the roguelike from Talas: route map, bestiary with sprites, items, calling tier list, seed of the week">
+<meta name="keywords" content="Steppe Crawl, roguelike, fan guide, bestiary, tier list, Ene Malka, tamga, Manas Peak, Baatyr, Berkutchi, Talas, игра, гайд">
+<link rel="canonical" href="https://uyalar.net/crawl/bestiary.html">
+<meta property="og:title" content="bestiary">
+<meta property="og:description" content="unofficial fan guide to Steppe Crawl, the roguelike from Talas: route map, bestiary with sprites, items, calling tier list, seed of the week">
+<meta property="og:url" content="https://uyalar.net/crawl/bestiary.html">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+body{margin:0;background:#100e18 url(bg.png);color:#e8e0cc;font:21px/1.25 VT323,'Courier New',monospace}
+a{color:#e8c94a}a:hover{color:#fff}
+.wrap{max-width:980px;margin:0 auto;padding:0 12px}
+.top{padding:14px 0 4px;text-align:center}
+.top h1{margin:6px 0 4px;font:22px/1.4 'Press Start 2P',monospace;color:#d8a640;text-shadow:3px 3px 0 #3a2410,0 0 18px rgba(216,166,64,.35)}
+.top h1 span{color:#6fc46f}
+.top .sub{color:#a89cb8;margin:0}
+.banner{display:block;width:100%;image-rendering:pixelated;margin:10px 0 0;border:4px solid #000;box-shadow:0 0 0 2px #5a4a2a}
+.menu{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:12px 0 14px}
+.menu a{font:10px/1 'Press Start 2P',monospace;text-decoration:none;color:#e8e0cc;background:#2a2438;padding:9px 10px;box-shadow:inset -3px -3px 0 #17131f,inset 3px 3px 0 #4a4060}
+.menu a:hover,.menu a.on{background:#d8a640;color:#1a1208;box-shadow:inset -3px -3px 0 #8a6420,inset 3px 3px 0 #f8d880}
+.panel{background:rgba(29,26,43,.94);margin:0 0 16px;padding:14px 16px;border:3px solid #000;box-shadow:0 0 0 3px #3e3554,6px 6px 0 3px rgba(0,0,0,.5)}
+.panel h2{font:13px/1.5 'Press Start 2P',monospace;color:#6fc46f;margin:2px 0 10px}
+.panel h2:before{content:"> ";color:#d8a640}
+.panel h3{font:11px/1.5 'Press Start 2P',monospace;color:#d8a640;margin:14px 0 6px}
+.panel p{margin:6px 0}
+.dim{color:#a89cb8}.gold{color:#e8c94a}.grn{color:#6fc46f}.red{color:#ff6070}.blu{color:#7aa0f0}
+.official{display:block;text-align:center;background:#2c3a1e;border:3px dashed #6fc46f;padding:10px;margin:0 0 16px;text-decoration:none;color:#e8e0cc}
+.official b{font:11px/1.6 'Press Start 2P',monospace;color:#6fc46f}
+.cols{display:grid;grid-template-columns:3fr 2fr;gap:16px}
+.seed{background:#14121f;border:3px solid #d8a640;padding:10px 12px;position:relative}
+.seed .code{font:12px/1.6 'Press Start 2P',monospace;color:#e8c94a;letter-spacing:1px;word-break:break-all}
+.seed ul{margin:6px 0;padding-left:20px}
+.seed button,.btn{font:9px/1 'Press Start 2P',monospace;background:#6fc46f;color:#0e1a08;border:0;padding:9px 10px;cursor:pointer;box-shadow:inset -3px -3px 0 #3a7a3a,inset 3px 3px 0 #b0f0a0}
+.seed button:active,.btn:active{box-shadow:inset 3px 3px 0 #3a7a3a}
+#roll{margin-top:8px;padding:8px 10px;background:#0e0c16;border-left:4px solid #6fc46f;min-height:3em}
+.pix{image-rendering:pixelated;width:100%;display:block;border:3px solid #000}
+.log{font:19px/1.15 VT323,monospace;background:#000;color:#cfc8b8;padding:8px 10px;border:2px solid #3e3554;margin:8px 0}
+.log b{color:#ff6070;font-weight:normal}.log i{color:#6fc46f;font-style:normal}
+.news li{margin:4px 0}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:6px 14px;margin:10px 0 0;padding:0;list-style:none}
+.legend li{padding-left:34px;position:relative}
+.legend li span{position:absolute;left:0;top:1px;width:26px;height:22px;background:#d8a640;color:#1a1208;font:10px/22px 'Press Start 2P',monospace;text-align:center}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px}
+.tiles div{background:#14121f;padding:6px;font-size:18px;line-height:1.1;display:flex;gap:8px;align-items:center}
+.tiles img{width:40px;height:40px;image-rendering:pixelated;flex:none}
+.filt{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.filt button{font:9px/1 'Press Start 2P',monospace;background:#2a2438;color:#e8e0cc;border:0;padding:8px;cursor:pointer;box-shadow:inset -2px -2px 0 #17131f,inset 2px 2px 0 #4a4060}
+.filt button.on{background:#d8a640;color:#1a1208}
+.beasts{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px}
+.card{background:#1d1a2b;border:3px solid #000;box-shadow:0 0 0 3px #3e3554;padding:10px;display:grid;grid-template-columns:96px 1fr;gap:4px 12px;align-content:start}
+.card.boss{box-shadow:0 0 0 3px #b08a30}
+.card img{width:96px;height:96px;image-rendering:pixelated;grid-row:1/3;border:2px solid #000}
+.card h3{margin:2px 0 0;font:11px/1.5 'Press Start 2P',monospace}
+.card .gl{font:10px 'Press Start 2P',monospace;margin-right:6px;padding:2px 3px;background:#000}
+.card .st{font-size:18px;line-height:1.15;color:#a89cb8}
+.card .q{grid-column:1/-1;font-size:19px;line-height:1.2;margin:4px 0 0}
+.card .tip{grid-column:1/-1;font-size:19px;line-height:1.2;background:#14121f;padding:5px 8px;border-left:4px solid #6fc46f}
+.danger{color:#ff6070;letter-spacing:2px}
+.spoiler{filter:blur(6px);cursor:pointer;transition:filter .2s}.spoiler.open{filter:none}
+.tblw{overflow-x:auto}
+table.it{width:100%;border-collapse:collapse;font-size:19px;line-height:1.15}
+table.it th{font:9px/1.4 'Press Start 2P',monospace;color:#1a1208;background:#d8a640;padding:7px 6px;text-align:left;cursor:pointer;white-space:nowrap}
+table.it th:after{content:" \2195";opacity:.5}
+table.it td{padding:5px 6px;border-bottom:2px solid #2a2438;vertical-align:top}
+table.it tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.sw{display:inline-block;width:12px;height:12px;margin-right:5px;border:1px solid #000;vertical-align:middle}
+.stars{color:#e8c94a;white-space:nowrap}
+.tier{display:grid;grid-template-columns:64px 1fr;margin:0 0 6px;background:#14121f}
+.tier>b{display:flex;align-items:center;justify-content:center;font:20px 'Press Start 2P',monospace;color:#1a1208}
+.tier>div{padding:6px 10px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:#2a2438;padding:3px 8px 3px 4px;font-size:19px;line-height:1.2}
+.chip i{font:10px 'Press Start 2P',monospace;font-style:normal;margin-right:6px;padding:2px 3px;background:#000}
+.foot{text-align:center;color:#a89cb8;font-size:18px;padding:4px 10px 26px;line-height:1.3}
+.tunduk-ring a{color:#e8c94a}
+.gb-intro{margin:0 0 8px}.gb-form td{padding:3px;font-size:19px}.gb-form input,.gb-form textarea{background:#0e0c16;color:#e8e0cc;border:2px solid #3e3554;font:19px VT323,monospace;max-width:100%}
+.gb-form input[type=submit]{font:9px 'Press Start 2P',monospace;background:#6fc46f;color:#0e1a08;padding:8px;border:0;cursor:pointer}
+.gb-note{color:#6fc46f}.gb-count{color:#a89cb8}
+.gb-entry{background:#14121f;border-left:4px solid #d8a640;margin:10px 0;padding:6px 10px}.gb-date{color:#a89cb8;font-size:17px}.gb-reply{color:#6fc46f;margin:4px 0 0 14px}
+@media(max-width:700px){.cols{grid-template-columns:1fr}.top h1{font-size:15px}.panel{padding:12px 10px}.panel h2{font-size:11px}
+ .card{grid-template-columns:72px 1fr}.card img{width:72px;height:72px}.gb-form textarea{width:100%}.gb-form input[type=text]{width:100%}}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-kometa.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="wrap"><div class="top"><h1>STEPPE CRAWL <span>//</span> fan guide</h1>
+<p class="sub">unofficial · made by one player from Talas · not by the game's maker · the real game is at <a href="https://steppecrawl.online/">steppecrawl.online</a></p></div>
+<nav class="menu"><a href="index.html">home</a><a href="map.html">maps</a><a href="bestiary.html">bestiary</a><a href="items.html">items</a><a href="tiers.html">tier list</a><a href="guestbook.html">Guestbook</a></nav>
+<div class="panel"><h2>bestiary (13 of them)</h2>
+<p>Not every monster in the game, just the ones that killed me or that I have something to say about. HD is the monster's
+hit dice from the game's data (a rough level). Danger is my own score after ~140 deaths. The letter is the ASCII glyph, so
+ASCII-mode people can find them too. Sprites are my fan art, not the game's tiles.</p>
+<div class="filt"><button class="on" onclick="F('',this)">all</button><button onclick="F('valley',this)">on the road</button><button onclick="F('region',this)">off-road</button><button onclick="F('unique',this)">uniques</button></div>
+<div class="beasts" id="bs"><div class="card" data-g="valley"><img src="m-marmot.png" width="96" height="96" alt="steppe marmot"><h3><span class="gl" style="color:#b98f5c">r</span><span style="color:#b98f5c">steppe marmot</span></h3><div class="st">HD 1 · valleys 1-3, Arslanbob Woods<br>danger <span class="danger">■□□□□</span></div><div class="q">Fat, whistles, bites when you corner it.</div><div class="tip"><span class="grn">tip:</span> Free XP. If you die to one of these, delete the character file and tell no one. (I died to one. On the bus. Bump.)</div></div><div class="card" data-g="valley"><img src="m-jackal.png" width="96" height="96" alt="jackal"><h3><span class="gl" style="color:#d9b45a">j</span><span style="color:#d9b45a">jackal</span></h3><div class="st">HD 1 · valleys 1-4<br>danger <span class="danger">■■□□□</span></div><div class="q">Fast and always in a pack of 2-4.</div><div class="tip"><span class="grn">tip:</span> Don't fight them in the open. Back into a corridor or between two junipers so only one can reach you.</div></div><div class="card" data-g="valley"><img src="m-karakurt.png" width="96" height="96" alt="karakurt"><h3><span class="gl" style="color:#c94f84">s</span><span style="color:#c94f84">karakurt</span></h3><div class="st">HD 2 · valleys, Tunnels, Sands<br>danger <span class="danger">■■■□□</span></div><div class="q">The black widow of the steppe. Poison that lasts.</div><div class="tip"><span class="grn">tip:</span> Carry one kymyz (curing) from valley 2 on. The poison does more damage than the bite. Kill it first, always.</div></div><div class="card" data-g="valley"><img src="m-wolf.png" width="96" height="96" alt="grey wolf"><h3><span class="gl" style="color:#bcb7ad">h</span><span style="color:#bcb7ad">grey wolf</span></h3><div class="st">HD 4 · valleys 3-9, Woods, Blizzard<br>danger <span class="danger">■■■□□</span></div><div class="q">Kökbörü. The clans call it an ancestor; it does not care.</div><div class="tip"><span class="grn">tip:</span> Packs again. Rest only when the valley is explored, or they find you at half HP. They are fast, so you can't run.</div></div><div class="card" data-g="valley"><img src="m-kuyun.png" width="96" height="96" alt="kuyun"><h3><span class="gl" style="color:#d8c890">v</span><span style="color:#d8c890">kuyun</span></h3><div class="st">HD 5 · valleys 5-11, Moiynkum Sands<br>danger <span class="danger">■■■□□</span></div><div class="q">A dust whirlwind that walks on its own business. Confuses.</div><div class="tip"><span class="grn">tip:</span> Poison does nothing to it. Confusion near a river is how my Kichi drowned. Fight it on dry ground or just walk away.</div></div><div class="card" data-g="region"><img src="m-skeleton.png" width="96" height="96" alt="kurgan skeleton"><h3><span class="gl" style="color:#e8e2d0">z</span><span style="color:#e8e2d0">kurgan skeleton</span></h3><div class="st">HD 5 · the Old Kurgans<br>danger <span class="danger">■■□□□</span></div><div class="q">Old bones in rotten felt with a bronze blade.</div><div class="tip"><span class="grn">tip:</span> Slow and stupid. Maces are great. St. Janyl players: these are your piety snacks.</div></div><div class="card" data-g="valley"><img src="m-almasty.png" width="96" height="96" alt="almasty"><h3><span class="gl" style="color:#a89880">H</span><span style="color:#a89880">almasty</span></h3><div class="st">HD 8 · the high passes<br>danger <span class="danger">■■■□□</span></div><div class="q">The hairy wild man. Herders leave it bread.</div><div class="tip"><span class="grn">tip:</span> You have no bread (the game says so itself). Hits hard. Ranged it from across a river once, it never reached me.</div></div><div class="card" data-g="valley"><img src="m-albasty.png" width="96" height="96" alt="albasty"><h3><span class="gl" style="color:#e55a5a">A</span><span style="color:#e55a5a">albasty</span></h3><div class="st">HD 9 · deep valleys<br>danger <span class="danger">■■■■■</span></div><div class="q">Yellow hair, feet turned backward. Her touch stops the breath.</div><div class="tip"><span class="grn">tip:</span> Number one killer of my characters at XL 10-12. Do not let her touch you. Tulpar's sweat (haste) and leave.</div></div><div class="card" data-g="region"><img src="m-balbal.png" width="96" height="96" alt="balbal guardian"><h3><span class="gl" style="color:#b0a898">8</span><span style="color:#b0a898">balbal guardian</span></h3><div class="st">HD 12 · the Old Kurgans<br>danger <span class="danger">■■■■□</span></div><div class="q">A stone figure from a kurgan, cup in hand. It has started to walk.</div><div class="tip"><span class="grn">tip:</span> Very high AC, very slow. If you're not a hitter, don't bother: it can't catch you.</div></div><div class="card" data-g="valley"><img src="m-youngajdaha.png" width="96" height="96" alt="young ajdaha"><h3><span class="gl" style="color:#6ad08f">D</span><span style="color:#6ad08f">young ajdaha</span></h3><div class="st">HD 9 · deep valleys<br>danger <span class="danger">■■■■□</span></div><div class="q">A serpent-dragon no longer than a cart. Already breathes fire.</div><div class="tip"><span class="grn">tip:</span> Drink salkyn ayran (resistance) before, not during. Ajdaha-born players laugh at the fire, everyone else cries.</div></div><div class="card boss" data-g="unique"><img src="m-toko.png" width="96" height="96" alt="Tökö the Marmot King"><h3><span class="gl" style="color:#ffd27a">r</span><span style="color:#ffd27a">Tökö the Marmot King</span></h3><div class="st">HD 4 · early valleys (unique)<br>danger <span class="danger">■■■□□</span></div><div class="q">The fattest marmot in Irad, with a court of lesser marmots.</div><div class="tip"><span class="grn">tip:</span> Funniest unique. His court surrounds you in the open. Fight him in a doorway and he's just a big marmot.</div></div><div class="card boss" data-g="unique"><img src="m-akboru.png" width="96" height="96" alt="Ak Börü, the White Wolf"><h3><span class="gl" style="color:#ffffff">h</span><span style="color:#ffffff">Ak Börü, the White Wolf</span></h3><div class="st">HD 11 · end of the Arslanbob Woods (unique)<br>danger <span class="danger">■■■■■</span></div><div class="q">A white wolf as big as a pony, leader of every pack in the woods.</div><div class="tip"><span class="grn">tip:</span> Guards the tamga of the Chubar. Clear the Woods level by level first so his pack is already dead when you reach him.</div></div><div class="card boss" data-g="unique"><img src="m-herald.png" width="96" height="96" alt="Morkhan's Herald"><h3><span class="gl" style="color:#ff3348">&amp;</span><span style="color:#ff3348">Morkhan's Herald</span></h3><div class="st">HD 22 · the Hidden Valley of Janyl (final)<br>danger <span class="danger">■■■■■</span></div><div class="q">Bull-headed. Keeps the Ene Malka in the ruin of the First Church.</div><div class="tip spoiler" onclick="this.classList.toggle('open')"><span class="grn">tip:</span> I won exactly once (Iradi Kashysh, St. Janyl ★★★★★). What worked for me is on the tier page. Click to unblur.</div></div></div></div>
+<div class="panel"><h2>the ones i didn't draw yet</h2>
+<p class="dim">jackal packs are bad but the <span style="color:#c9a070">tazy hound</span> packs in the Smugglers' Tunnels are worse ·
+the <span style="color:#a7c0d2">restless rider</span> sits backwards in his saddle and I still have nightmares · <span style="color:#8a8aa2">black bull</span>: there's a
+reason cattle are an ill omen in this game · <span style="color:#7091e0">kara boran</span> = a knot of black wind with voices, skip it ·
+<span style="color:#ffc040">Bakai, King of the Tunnels</span> has never paid a toll in his life and he's not starting with you ·
+<span style="color:#ffe060">Sary Chayan</span> in the Sands, <span style="color:#ffd700">the Golden Warrior</span> in the Kurgans, <span style="color:#4a68ff">Kara Boran Ene</span>
+in the Blizzard: each sits on a tamga. Drawing them next month, promise.</p></div>
+<script>function F(k,b){document.querySelectorAll('#bs .card').forEach(function(c){c.style.display=(!k||c.dataset.g==k)?'':'none'});document.querySelectorAll('.filt button').forEach(function(x){x.classList.toggle('on',x==b)});}</script>
+</div><div class="tunduk-ring" style="text-align:center;margin:18px auto 6px;padding:0 10px;font:20px/1.4 VT323,monospace;color:#e8e0cc"><a href="../kushfan/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../marshrut/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../marshrut/index.html','../shyrdak/index.html','../asman/index.html','../podval/index.html','../intourist/index.html','../tush/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div><div class="foot">dastan.bt · Talas · drawn on a laptop, written on marshrutka 22 · all tiles, sprites and maps on this site are my own fan art, the game uses different ones<br>
+names of monsters, items and places belong to Steppe Crawl · this guide is for game 0.9.4 · <a href="../top100.html"><img src="../img/cnt-crawl.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>items</title>
+<meta name="description" content="unofficial fan guide to Steppe Crawl, the roguelike from Talas: route map, bestiary with sprites, items, calling tier list, seed of the week">
+<meta name="keywords" content="Steppe Crawl, roguelike, fan guide, bestiary, tier list, Ene Malka, tamga, Manas Peak, Baatyr, Berkutchi, Talas, игра, гайд">
+<link rel="canonical" href="https://uyalar.net/crawl/items.html">
+<meta property="og:title" content="items">
+<meta property="og:description" content="unofficial fan guide to Steppe Crawl, the roguelike from Talas: route map, bestiary with sprites, items, calling tier list, seed of the week">
+<meta property="og:url" content="https://uyalar.net/crawl/items.html">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+body{margin:0;background:#100e18 url(bg.png);color:#e8e0cc;font:21px/1.25 VT323,'Courier New',monospace}
+a{color:#e8c94a}a:hover{color:#fff}
+.wrap{max-width:980px;margin:0 auto;padding:0 12px}
+.top{padding:14px 0 4px;text-align:center}
+.top h1{margin:6px 0 4px;font:22px/1.4 'Press Start 2P',monospace;color:#d8a640;text-shadow:3px 3px 0 #3a2410,0 0 18px rgba(216,166,64,.35)}
+.top h1 span{color:#6fc46f}
+.top .sub{color:#a89cb8;margin:0}
+.banner{display:block;width:100%;image-rendering:pixelated;margin:10px 0 0;border:4px solid #000;box-shadow:0 0 0 2px #5a4a2a}
+.menu{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:12px 0 14px}
+.menu a{font:10px/1 'Press Start 2P',monospace;text-decoration:none;color:#e8e0cc;background:#2a2438;padding:9px 10px;box-shadow:inset -3px -3px 0 #17131f,inset 3px 3px 0 #4a4060}
+.menu a:hover,.menu a.on{background:#d8a640;color:#1a1208;box-shadow:inset -3px -3px 0 #8a6420,inset 3px 3px 0 #f8d880}
+.panel{background:rgba(29,26,43,.94);margin:0 0 16px;padding:14px 16px;border:3px solid #000;box-shadow:0 0 0 3px #3e3554,6px 6px 0 3px rgba(0,0,0,.5)}
+.panel h2{font:13px/1.5 'Press Start 2P',monospace;color:#6fc46f;margin:2px 0 10px}
+.panel h2:before{content:"> ";color:#d8a640}
+.panel h3{font:11px/1.5 'Press Start 2P',monospace;color:#d8a640;margin:14px 0 6px}
+.panel p{margin:6px 0}
+.dim{color:#a89cb8}.gold{color:#e8c94a}.grn{color:#6fc46f}.red{color:#ff6070}.blu{color:#7aa0f0}
+.official{display:block;text-align:center;background:#2c3a1e;border:3px dashed #6fc46f;padding:10px;margin:0 0 16px;text-decoration:none;color:#e8e0cc}
+.official b{font:11px/1.6 'Press Start 2P',monospace;color:#6fc46f}
+.cols{display:grid;grid-template-columns:3fr 2fr;gap:16px}
+.seed{background:#14121f;border:3px solid #d8a640;padding:10px 12px;position:relative}
+.seed .code{font:12px/1.6 'Press Start 2P',monospace;color:#e8c94a;letter-spacing:1px;word-break:break-all}
+.seed ul{margin:6px 0;padding-left:20px}
+.seed button,.btn{font:9px/1 'Press Start 2P',monospace;background:#6fc46f;color:#0e1a08;border:0;padding:9px 10px;cursor:pointer;box-shadow:inset -3px -3px 0 #3a7a3a,inset 3px 3px 0 #b0f0a0}
+.seed button:active,.btn:active{box-shadow:inset 3px 3px 0 #3a7a3a}
+#roll{margin-top:8px;padding:8px 10px;background:#0e0c16;border-left:4px solid #6fc46f;min-height:3em}
+.pix{image-rendering:pixelated;width:100%;display:block;border:3px solid #000}
+.log{font:19px/1.15 VT323,monospace;background:#000;color:#cfc8b8;padding:8px 10px;border:2px solid #3e3554;margin:8px 0}
+.log b{color:#ff6070;font-weight:normal}.log i{color:#6fc46f;font-style:normal}
+.news li{margin:4px 0}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:6px 14px;margin:10px 0 0;padding:0;list-style:none}
+.legend li{padding-left:34px;position:relative}
+.legend li span{position:absolute;left:0;top:1px;width:26px;height:22px;background:#d8a640;color:#1a1208;font:10px/22px 'Press Start 2P',monospace;text-align:center}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px}
+.tiles div{background:#14121f;padding:6px;font-size:18px;line-height:1.1;display:flex;gap:8px;align-items:center}
+.tiles img{width:40px;height:40px;image-rendering:pixelated;flex:none}
+.filt{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.filt button{font:9px/1 'Press Start 2P',monospace;background:#2a2438;color:#e8e0cc;border:0;padding:8px;cursor:pointer;box-shadow:inset -2px -2px 0 #17131f,inset 2px 2px 0 #4a4060}
+.filt button.on{background:#d8a640;color:#1a1208}
+.beasts{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px}
+.card{background:#1d1a2b;border:3px solid #000;box-shadow:0 0 0 3px #3e3554;padding:10px;display:grid;grid-template-columns:96px 1fr;gap:4px 12px;align-content:start}
+.card.boss{box-shadow:0 0 0 3px #b08a30}
+.card img{width:96px;height:96px;image-rendering:pixelated;grid-row:1/3;border:2px solid #000}
+.card h3{margin:2px 0 0;font:11px/1.5 'Press Start 2P',monospace}
+.card .gl{font:10px 'Press Start 2P',monospace;margin-right:6px;padding:2px 3px;background:#000}
+.card .st{font-size:18px;line-height:1.15;color:#a89cb8}
+.card .q{grid-column:1/-1;font-size:19px;line-height:1.2;margin:4px 0 0}
+.card .tip{grid-column:1/-1;font-size:19px;line-height:1.2;background:#14121f;padding:5px 8px;border-left:4px solid #6fc46f}
+.danger{color:#ff6070;letter-spacing:2px}
+.spoiler{filter:blur(6px);cursor:pointer;transition:filter .2s}.spoiler.open{filter:none}
+.tblw{overflow-x:auto}
+table.it{width:100%;border-collapse:collapse;font-size:19px;line-height:1.15}
+table.it th{font:9px/1.4 'Press Start 2P',monospace;color:#1a1208;background:#d8a640;padding:7px 6px;text-align:left;cursor:pointer;white-space:nowrap}
+table.it th:after{content:" \2195";opacity:.5}
+table.it td{padding:5px 6px;border-bottom:2px solid #2a2438;vertical-align:top}
+table.it tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.sw{display:inline-block;width:12px;height:12px;margin-right:5px;border:1px solid #000;vertical-align:middle}
+.stars{color:#e8c94a;white-space:nowrap}
+.tier{display:grid;grid-template-columns:64px 1fr;margin:0 0 6px;background:#14121f}
+.tier>b{display:flex;align-items:center;justify-content:center;font:20px 'Press Start 2P',monospace;color:#1a1208}
+.tier>div{padding:6px 10px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:#2a2438;padding:3px 8px 3px 4px;font-size:19px;line-height:1.2}
+.chip i{font:10px 'Press Start 2P',monospace;font-style:normal;margin-right:6px;padding:2px 3px;background:#000}
+.foot{text-align:center;color:#a89cb8;font-size:18px;padding:4px 10px 26px;line-height:1.3}
+.tunduk-ring a{color:#e8c94a}
+.gb-intro{margin:0 0 8px}.gb-form td{padding:3px;font-size:19px}.gb-form input,.gb-form textarea{background:#0e0c16;color:#e8e0cc;border:2px solid #3e3554;font:19px VT323,monospace;max-width:100%}
+.gb-form input[type=submit]{font:9px 'Press Start 2P',monospace;background:#6fc46f;color:#0e1a08;padding:8px;border:0;cursor:pointer}
+.gb-note{color:#6fc46f}.gb-count{color:#a89cb8}
+.gb-entry{background:#14121f;border-left:4px solid #d8a640;margin:10px 0;padding:6px 10px}.gb-date{color:#a89cb8;font-size:17px}.gb-reply{color:#6fc46f;margin:4px 0 0 14px}
+@media(max-width:700px){.cols{grid-template-columns:1fr}.top h1{font-size:15px}.panel{padding:12px 10px}.panel h2{font-size:11px}
+ .card{grid-template-columns:72px 1fr}.card img{width:72px;height:72px}.gb-form textarea{width:100%}.gb-form input[type=text]{width:100%}}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-kometa.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="wrap"><div class="top"><h1>STEPPE CRAWL <span>//</span> fan guide</h1>
+<p class="sub">unofficial · made by one player from Talas · not by the game's maker · the real game is at <a href="https://steppecrawl.online/">steppecrawl.online</a></p></div>
+<nav class="menu"><a href="index.html">home</a><a href="map.html">maps</a><a href="bestiary.html">bestiary</a><a href="items.html">items</a><a href="tiers.html">tier list</a><a href="guestbook.html">Guestbook</a></nav>
+<div class="panel"><h2>items (the ones that matter)</h2>
+<p>Potions and the like are <b>unidentified</b> when you find them: they have a random look each game (horn, felt-wrapped,
+birch-bark, blue glass, walnut-wood...), so "the clay one" is kymyz in one run and kara suu in the next. Names below are
+what they turn into once you know. Stars = my opinion, not the game's. The colour square is just how I imagine them.
+Click a column header to sort.</p>
+<div class="tblw"><table class="it" id="it"><thead><tr><th>name</th><th>is</th><th>kind</th><th>my rating</th><th>notes</th></tr></thead><tbody>
+<tr><td><span class="sw" style="background:#e8e0cc"></span><b class="gold">kymyz</b></td><td>curing</td><td>potion</td><td data-v="5"><span class="stars">★★★★★</span></td><td>Poison, confusion, slowness: gone. Most common potion. Never be without one.</td></tr><tr><td><span class="sw" style="background:#ffffff"></span><b class="gold">ak süt</b></td><td>heal wounds</td><td>potion</td><td data-v="5"><span class="stars">★★★★★</span></td><td>The real healing. Save 2 for the ride home.</td></tr><tr><td><span class="sw" style="background:#8ad0ff"></span><b class="gold">Tulpar's sweat</b></td><td>haste</td><td>potion</td><td data-v="5"><span class="stars">★★★★★</span></td><td>Escape button. Albasty? Drink. Herald? Drink.</td></tr><tr><td><span class="sw" style="background:#c8a070"></span><b class="gold">shoro</b></td><td>might</td><td>potion</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>More damage for a while. Before a unique, not during.</td></tr><tr><td><span class="sw" style="background:#d8f0f0"></span><b class="gold">salkyn ayran</b></td><td>resistance</td><td>potion</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Fire, cold, poison all at once. Ajdaha juice.</td></tr><tr><td><span class="sw" style="background:#d8b060"></span><b class="gold">bozo</b></td><td>berserk rage</td><td>potion</td><td data-v="3"><span class="stars">★★★☆☆</span></td><td>Great for Baatyrs, terrible if you're surrounded and slow after.</td></tr><tr><td><span class="sw" style="background:#70b0e0"></span><b class="gold">arashan water</b></td><td>magic</td><td>potion</td><td data-v="3"><span class="stars">★★★☆☆</span></td><td>Mana back. Casters only.</td></tr><tr><td><span class="sw" style="background:#7a4020"></span><b class="gold">kara chai</b></td><td>brilliance</td><td>potion</td><td data-v="3"><span class="stars">★★★☆☆</span></td><td>Spells get better. Jaychy + kara chai + lightning = good day.</td></tr><tr><td><span class="sw" style="background:#b0b8c8"></span><b class="gold">tuman water</b></td><td>invisibility</td><td>potion</td><td data-v="3"><span class="stars">★★★☆☆</span></td><td>Walk past things. Not past Peri, they see invisible.</td></tr><tr><td><span class="sw" style="background:#f8e8a0"></span><b class="gold">ancient kymyz</b></td><td>experience</td><td>potion</td><td data-v="5"><span class="stars">★★★★★</span></td><td>Very rare. Drink it right away, it's a level.</td></tr><tr><td><span class="sw" style="background:#fff8f0"></span><b class="gold">Janyl's milk</b></td><td>cure mutation</td><td>potion</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Keep it for when kara suu gives you cattle stink.</td></tr><tr><td><span class="sw" style="background:#203040"></span><b class="gold">kara suu</b></td><td>mutation</td><td>potion</td><td data-v="1"><span class="stars">★☆☆☆☆</span></td><td>Random mutation. Could be claws, could be 'cattle stink'. Usually stink.</td></tr><tr><td><span class="sw" style="background:#e55a5a"></span><b class="gold">albasty's tears</b></td><td>confusion</td><td>potion</td><td data-v="1"><span class="stars">★☆☆☆☆</span></td><td>Don't. If you must, throw it away.</td></tr><tr><td><span class="sw" style="background:#c0c8d0"></span><b class="gold">kylych</b></td><td>sabre</td><td>weapon</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Baatyr's start. Good till the end, honestly.</td></tr><tr><td><span class="sw" style="background:#c0c8d0"></span><b class="gold">eki-kol kylych</b></td><td>great sword</td><td>weapon</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Two hands, no shield. Dev-born love it. Kichi can't lift it.</td></tr><tr><td><span class="sw" style="background:#c0c8d0"></span><b class="gold">aibalta</b></td><td>moon-axe</td><td>weapon</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Polearm. Iradi are good with it. Looks sick.</td></tr><tr><td><span class="sw" style="background:#8a6438"></span><b class="gold">kamchy</b></td><td>horsewhip</td><td>weapon</td><td data-v="2"><span class="stars">★★☆☆☆</span></td><td>It's a whip. You're fighting a dev with a whip.</td></tr><tr><td><span class="sw" style="background:#a07040"></span><b class="gold">kurama jaa</b></td><td>composite longbow</td><td>weapon</td><td data-v="5"><span class="stars">★★★★★</span></td><td>At-Kishi + this = the best start-to-mid game in my opinion.</td></tr><tr><td><span class="sw" style="background:#a07040"></span><b class="gold">salyng</b></td><td>sling</td><td>weapon</td><td data-v="3"><span class="stars">★★★☆☆</span></td><td>Kichi's friend. Stones are everywhere.</td></tr><tr><td><span class="sw" style="background:#9aa0a8"></span><b class="gold">kuyak</b></td><td>lamellar</td><td>armour</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Baatyr armour. Heavy for casters.</td></tr><tr><td><span class="sw" style="background:#5a7ab0"></span><b class="gold">chapan</b></td><td>quilted robe</td><td>armour</td><td data-v="2"><span class="stars">★★☆☆☆</span></td><td>What casters wear. And seed W45 people.</td></tr><tr><td><span class="sw" style="background:#43b86f"></span><b class="gold">ajdaha scales</b></td><td>dragon scales</td><td>armour</td><td data-v="5"><span class="stars">★★★★★</span></td><td>If you see it, take it. Fire resistance built in.</td></tr><tr><td><span class="sw" style="background:#ffffff"></span><b class="gold">tumar of Janyl</b></td><td>life-saving</td><td>amulet</td><td data-v="5"><span class="stars">★★★★★</span></td><td>One extra life. The rarest thing I ever found (once).</td></tr><tr><td><span class="sw" style="background:#a0c8f0"></span><b class="gold">yada stone</b></td><td>calls a freezing storm</td><td>evocable</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Jaychy starts with one. The weather in a pocket.</td></tr><tr><td><span class="sw" style="background:#c08850"></span><b class="gold">old komuz</b></td><td>plays a sleeping song</td><td>evocable</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Everything around falls asleep. Ïrchy's best friend. Mine too.</td></tr><tr><td><span class="sw" style="background:#e0b070"></span><b class="gold">Horn of Kambar</b></td><td>summons</td><td>evocable</td><td data-v="4"><span class="stars">★★★★☆</span></td><td>Help arrives. Who? Play and see.</td></tr></tbody></table></div></div>
+<div class="panel"><h2>how i identify potions (no spoilers, just maths)</h2>
+<p>1. The most common look in the first two valleys is nearly always <b>kymyz</b>.<br>
+2. A stack of 3+ that isn't kymyz is often ak süt.<br>
+3. Drink unknowns when you're at full HP, rested, with nothing in view and no river next to you (confusion + river = swim lesson).<br>
+4. Never drink-ID during the ride home with the Ene Malka. The valleys come after you, remember.</p></div>
+<script>(function(){var t=document.getElementById('it'),dir={};t.querySelectorAll('th').forEach(function(th,i){th.onclick=function(){
+var rows=[].slice.call(t.tBodies[0].rows);dir[i]=!dir[i];rows.sort(function(a,b){var x=a.cells[i],y=b.cells[i];
+var p=x.dataset.v!==undefined?(+x.dataset.v)-(+y.dataset.v):x.textContent.localeCompare(y.textContent);return dir[i]?p:-p;});
+rows.forEach(function(r){t.tBodies[0].appendChild(r)});};});})();</script>
+</div><div class="tunduk-ring" style="text-align:center;margin:18px auto 6px;padding:0 10px;font:20px/1.4 VT323,monospace;color:#e8e0cc"><a href="../kushfan/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../marshrut/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../marshrut/index.html','../shyrdak/index.html','../asman/index.html','../podval/index.html','../intourist/index.html','../tush/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div><div class="foot">dastan.bt · Talas · drawn on a laptop, written on marshrutka 22 · all tiles, sprites and maps on this site are my own fan art, the game uses different ones<br>
+names of monsters, items and places belong to Steppe Crawl · this guide is for game 0.9.4 · <a href="../top100.html"><img src="../img/cnt-crawl.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div>
+</body>
+</html>

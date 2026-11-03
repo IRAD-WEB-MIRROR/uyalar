@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guestbook</title>
+<meta name="description" content="a Talas transit shrine: the network map, line diagrams, the fleet drawn to scale, timetables and my end-to-end list. 2 som at a time. by adik">
+<meta name="keywords" content="marshrutka, маршрутка, bus, автобус, Talas, Талас, route map, схема, timetable, расписание, Yutong, LiAZ, Ikarus, PAZ, Sprinter">
+<link rel="canonical" href="https://uyalar.net/marshrut/guestbook.html">
+<meta property="og:title" content="Guestbook">
+<meta property="og:description" content="a Talas transit shrine: the network map, line diagrams, the fleet drawn to scale, timetables and my end-to-end list. 2 som at a time. by adik">
+<meta property="og:url" content="https://uyalar.net/marshrut/guestbook.html">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+:root{--ink:#111;--paper:#efede6;--red:#e2231a;--amb:#ffb000}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 Archivo,Arial,Helvetica,sans-serif}
+a{color:var(--ink);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{background:var(--ink);color:var(--paper)}
+.led{background:#0b0b0b;padding:14px 12px 10px;text-align:center;border-bottom:8px solid var(--red)}
+.led img{display:block;margin:0 auto;width:min(100%,900px);height:auto;image-rendering:auto}
+.led p{margin:8px 0 0;color:#8a8a8a;font:12px 'JetBrains Mono',monospace;letter-spacing:1px}
+.menu{display:flex;flex-wrap:wrap;max-width:1000px;margin:0 auto;border-left:2px solid var(--ink)}
+.menu a{flex:1 1 auto;text-align:center;padding:10px 12px;border:2px solid var(--ink);border-left:0;border-top:0;text-decoration:none;font:800 15px Archivo,Arial,sans-serif;text-transform:uppercase;letter-spacing:.5px;background:#fff}
+.menu a:hover{background:var(--amb);color:var(--ink)}
+.menu a b{display:inline-block;min-width:22px;padding:0 4px;margin-right:6px;background:var(--ink);color:#fff;font-weight:800}
+.wrap{max-width:1000px;margin:0 auto;padding:18px 16px 8px}
+h1{font:900 clamp(34px,7vw,64px)/.95 Archivo,Arial,sans-serif;letter-spacing:-1.5px;margin:6px 0 14px;text-transform:uppercase}
+h2{font:900 26px/1.1 Archivo,Arial,sans-serif;text-transform:uppercase;letter-spacing:-.5px;margin:28px 0 10px;padding-top:8px;border-top:6px solid var(--ink)}
+h3{font:800 18px Archivo,Arial,sans-serif;margin:16px 0 6px}
+.lead{font-size:19px;line-height:1.45;max-width:760px}
+.cols{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.box{border:2px solid var(--ink);background:#fff;padding:12px 14px}
+.box.y{background:var(--amb)}
+.mono,pre,code{font-family:'JetBrains Mono',monospace}
+.no{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:30px;padding:0 6px;font:900 17px Archivo,Arial,sans-serif;color:#fff;background:var(--c,#111);vertical-align:middle}
+.no.m{border-radius:15px;min-width:42px;background:#fff;color:#111;border:3px solid var(--c,#111)}
+.no.s{min-width:24px;height:20px;font-size:12px;padding:0 3px}.no.m.s{border-width:2px;min-width:28px;border-radius:10px}
+.mapbox{border:2px solid var(--ink);background:#fff;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.mapbox svg{display:block;width:100%;min-width:860px;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.legend button{font:700 13px Archivo,Arial,sans-serif;border:2px solid var(--ink);background:#fff;padding:3px 8px 3px 4px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.legend button.on{background:var(--ink);color:#fff}
+svg.hl .rt{opacity:.1}svg.hl .rt.on{opacity:1}
+.hint{font:12px 'JetBrains Mono',monospace;color:#555}
+.log p{margin:0;padding:6px 0;border-bottom:1px solid #bbb;font-size:15px}.log b{font-family:'JetBrains Mono',monospace}
+.friends{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.friends img{image-rendering:pixelated;display:block;border:0}
+.lines{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.line{border:2px solid var(--ink);background:#fff}
+.line .hd{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:2px solid var(--ink)}
+.line .hd h3{margin:0;font-size:17px;line-height:1.15}
+.line .hd small{display:block;font:12px 'JetBrains Mono',monospace;color:#555;font-weight:400}
+.strip{list-style:none;margin:0;padding:10px 12px 12px 12px}
+.strip li{position:relative;padding:3px 0 3px 30px;min-height:26px;font-size:14px;line-height:1.25}
+.strip li:before{content:"";position:absolute;left:8px;top:0;bottom:0;width:7px;background:var(--c)}
+.strip li:first-child:before{top:10px}.strip li:last-child:before{bottom:calc(100% - 12px)}
+.strip li:after{content:"";position:absolute;left:5px;top:6px;width:9px;height:9px;border:2px solid var(--ink);background:#fff;border-radius:50%}
+.strip li.t{font-weight:800}.strip li.t:after{left:1px;top:3px;width:17px;height:15px;border-radius:0;border-width:3px}
+.strip li i{display:block;font:11px 'JetBrains Mono',monospace;color:#666;font-style:normal}
+.strip li .x{display:inline-flex;gap:3px;margin-left:4px;vertical-align:1px;flex-wrap:wrap}
+.strip li .x span{font:700 10px Archivo,sans-serif;padding:0 3px;border:1.5px solid #111;line-height:13px}
+.strip li .x span.b{background:#111;color:#fff}
+.strip li em{display:block;font:italic 13px Archivo,sans-serif;color:#a0140c}
+.fleet{display:grid;gap:22px}
+.veh{border:2px solid var(--ink);background:#fff}
+.veh .pic{background:#fff;border-bottom:2px solid var(--ink);padding:10px 8px 0;overflow:hidden}
+.veh .pic img{display:block;max-width:100%;height:auto}
+.veh .tx{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:12px 14px}
+@media(max-width:620px){.veh .tx{grid-template-columns:1fr}}
+.veh h3{margin:0;font-size:22px;line-height:1.1}
+.veh dl{margin:6px 0 0;font:12.5px/1.5 'JetBrains Mono',monospace}.veh dt{color:#666}.veh dd{margin:0 0 4px}
+.veh p{margin:0 0 8px}
+.ruler{font:12px 'JetBrains Mono',monospace;border-top:2px solid #111;display:flex;justify-content:space-between;max-width:700px;padding-top:2px}
+.tt{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:18px}
+.tbl{border:2px solid var(--ink);background:#fff}
+.tbl .hd{display:flex;gap:10px;align-items:center;padding:8px 10px;border-bottom:2px solid var(--ink);background:#fff}
+.tbl .hd h3{margin:0;font-size:16px;line-height:1.2}
+.tbl pre{margin:0;padding:10px 12px;font-size:13px;line-height:1.55;overflow-x:auto;white-space:pre}
+.tbl pre b{background:var(--amb)}
+.seg{display:inline-flex;border:2px solid var(--ink);margin:6px 0 12px}
+.seg button{font:800 14px Archivo,sans-serif;border:0;background:#fff;padding:6px 14px;cursor:pointer;text-transform:uppercase}
+.seg button.on{background:var(--ink);color:#fff}
+.w{display:none}body.winter .w{display:block}body.winter .s{display:none}
+.prog{height:22px;border:2px solid var(--ink);background:#fff;position:relative;margin:4px 0 12px}
+.prog i{position:absolute;left:0;top:0;bottom:0;background:var(--red)}.prog i.v{background:var(--amb);height:50%;top:auto}
+.rlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
+.rlist label{display:grid;grid-template-columns:48px 1fr 26px 22px;gap:6px;align-items:center;padding:5px 8px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);background:#fff;font-size:13px;line-height:1.2;cursor:pointer}
+.rlist label:hover{background:#fff4d6}
+.rlist label.off{background:#e3e1da;color:#777}
+.rlist label small{display:block;font:11px 'JetBrains Mono',monospace;color:#666}
+.rlist .me{font:800 11px 'JetBrains Mono',monospace;text-align:center;color:#fff;background:var(--red);line-height:18px}
+.rlist .me.n{background:none;color:#bbb}
+.rlist input{width:18px;height:18px;accent-color:#111;margin:0}
+.rec td,.rec th{text-align:left;padding:5px 8px;border-bottom:1px solid #bbb;vertical-align:top}.rec{border-collapse:collapse;width:100%;font-size:14px}
+.rec th{font:700 12px 'JetBrains Mono',monospace;color:#555}
+.gb-intro{font-weight:700}.gb-form{border:2px solid var(--ink);background:#fff;padding:10px;max-width:520px}.gb-form input,.gb-form textarea{border:2px solid #111;font:14px 'JetBrains Mono',monospace;max-width:100%}
+.gb-form input[type=submit]{background:var(--red);color:#fff;font:800 14px Archivo,sans-serif;padding:6px 14px;cursor:pointer}
+.gb-note{font:700 14px 'JetBrains Mono',monospace;background:var(--amb);padding:8px;border:2px solid #111}
+.gb-entry{border-top:2px solid var(--ink);padding:10px 0}.gb-date{font:12px 'JetBrains Mono',monospace;color:#666}.gb-reply{margin:6px 0 0 18px;padding-left:10px;border-left:6px solid var(--red)}
+.gb-form table{width:100%}.gb-form input[type=text],.gb-form textarea{width:100%}.gb-form td{padding:2px}
+.foot{max-width:1000px;margin:10px auto 0;padding:14px 16px 30px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;border-top:6px solid var(--ink);font:12px/1.5 'JetBrains Mono',monospace}
+.foot p{margin:0;max-width:640px}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-torgoy.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="led"><img src="led.png" width="900" height="112" alt="MARSHRUT · Talas"><p>EVERY BUS AND MARSHRUTKA IN TALAS · 2 SOM AT A TIME · SINCE 2025</p></div>
+<nav class="menu"><a href="index.html"><b>1</b>map</a><a href="lines.html"><b>2</b>lines</a><a href="fleet.html"><b>3</b>fleet</a><a href="times.html"><b>4</b>timetables</a><a href="ridden.html"><b>5</b>end to end</a><a href="guestbook.html"><b>!</b>Guestbook</a></nav><div class="wrap"><p class="gb-intro">leave a note at the stop. say which route you are on right now.</p><form class="gb-form" onsubmit="this.querySelector('.gb-note').style.display='block';return false"><table><tr><td>Name:</td><td><input type="text" size="28"></td></tr><tr><td>E-mail:</td><td><input type="text" size="28"></td></tr><tr><td valign="top">Message:</td><td><textarea rows="5" cols="34"></textarea></td></tr><tr><td></td><td><input type="submit" value="Send"></td></tr></table><p class="gb-note" style="display:none">■ STOP REQUEST RECEIVED. the doors did not open (uyalar has no scripts). mail adik.marshrut@attelkom.net and I copy it in by hand on Sunday after the ride.</p></form><p class="gb-count">Messages: 8</p><div class="gb-entry"><div class="gb-head"><b>tima22</b> (uyalar.net/m22) <span class="gb-date">16.03.2025</span></div><div class="gb-text">a map of my route that is not drawn by me. strange feeling. good map</div><div class="gb-reply"><b>adik:</b> the 22 is the best line in the city and you know it</div></div>
+<div class="gb-entry"><div class="gb-head"><b>dari</b> (uyalar.net/ostanovka) <span class="gb-date">02.04.2025</span></div><div class="gb-text">you ride them, I wait for them. we should do one Sunday together: you choose the route, I photograph the stops on it</div><div class="gb-reply"><b>adik:</b> the 14 to Semiz. the horses stop is near. deal?</div></div>
+<div class="gb-entry"><div class="gb-head"><b>tima22</b> <span class="gb-date">20.10.2026</span></div><div class="gb-text">ok I saw the fleet page. YES the 22 is a County. Ermek-baike's is a Sprinter because I can't draw the County's nose. leave me alone 😭</div><div class="gb-reply"><b>adik:</b> the nose is the whole point of the County</div></div>
+<div class="gb-entry"><div class="gb-head"><b>trolleybus_nz</b> (Nurzhan) <span class="gb-date">05.05.2026</span></div><div class="gb-text">Nurzhan here. we still have four trolleybus routes, since 1966. come, I'll show you the depot from the fence. the 2 is the best one</div><div class="gb-reply"><b>adik:</b> I'm coming in summer. I want all four</div></div>
+<div class="gb-entry"><div class="gb-head"><b>Beka</b> (Talas, school No. 31) <span class="gb-date">12.09.2025</span></div><div class="gb-text">how do you ride for 84 minutes without getting off. I can't sit in maths for 40</div><div class="gb-reply"><b>adik:</b> two samsas and a book</div></div>
+<div class="gb-entry"><div class="gb-head"><b>aidai</b> (uyalar.net/okuu) <span class="gb-date">28.01.2026</span></div><div class="gb-text">I read a whole novel on the 40 because of you (there and back). the 40 is a library now</div></div>
+<div class="gb-entry"><div class="gb-head"><b>kara_bek_fan</b> <span class="gb-date">14.07.2026</span></div><div class="gb-text">the 31 to the air base is a western. dust, fences, one road, the sun. I rode it after my night shift. respect</div><div class="gb-reply"><b>adik:</b> the 31 at 05:50 is the most cinematic bus in Irad</div></div>
+<div class="gb-entry"><div class="gb-head"><b>Gulnara</b> (Talas) <span class="gb-date">03.10.2026</span></div><div class="gb-text">my father drives the 2. I showed him your note about the lagman. he laughed and said it's true</div><div class="gb-reply"><b>adik:</b> salam to him!! the 2 is a good bus</div></div></div><div class="tunduk-ring" style="text-align:center;margin:28px auto 8px;font:600 13px Archivo,Arial,sans-serif;color:#111;background:#fff;border:2px solid #111;max-width:440px;padding:6px 8px"><a href="../crawl/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../shyrdak/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../crawl/index.html','../shyrdak/index.html','../asman/index.html','../podval/index.html','../intourist/index.html','../tush/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div><div class="foot"><p>adik · Talas, Station District · stops, routes, times and carriers from the Bus Park site (transport.talas.iradgov.org), checked from a seat by the window. not official. if the 22 does not come, it is not my fault.</p><a href="../top100.html"><img src="../img/cnt-marshrut.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div>
+</body>
+</html>

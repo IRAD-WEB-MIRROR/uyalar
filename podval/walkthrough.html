@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ПОДВАЛ: прохождение (не надо)</title>
+<meta name="description" content="подвал: текстовая игра про подвал хрущёвки в Нуржане. 12 комнат, трубы, кот, огурцы. играть в браузере">
+<meta name="keywords" content="подвал, текстовая игра, text adventure, parser, interactive fiction, хрущёвка, Нуржан, Nurzhan, кот, огурцы, podval">
+<link rel="canonical" href="https://uyalar.net/podval/walkthrough.html">
+<meta property="og:title" content="ПОДВАЛ: прохождение (не надо)">
+<meta property="og:description" content="подвал: текстовая игра про подвал хрущёвки в Нуржане. 12 комнат, трубы, кот, огурцы. играть в браузере">
+<meta property="og:url" content="https://uyalar.net/podval/walkthrough.html">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+html{background:#000}
+body{margin:0;background:#020502;color:#5dff6e;font:15px/1.5 'PT Mono','Courier New',monospace}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);z-index:9}
+a{color:#b6ffbd}a:hover{background:#5dff6e;color:#000}
+.t{max-width:900px;margin:0 auto;padding:0 12px}
+.hd{border:2px solid #5dff6e;margin:16px 0 0;padding:10px 12px;display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;justify-content:space-between}
+.hd h1{margin:0;font:bold 34px/1 'PT Mono',monospace;letter-spacing:10px;text-shadow:0 0 8px rgba(93,255,110,.6)}
+.hd span{color:#2e9c3a;font-size:13px}
+.nv{border:2px solid #5dff6e;border-top:0;display:flex;flex-wrap:wrap}
+.nv a{flex:1 1 auto;text-align:center;text-decoration:none;padding:6px 10px;border-right:2px solid #5dff6e;color:#5dff6e;text-transform:uppercase;letter-spacing:2px;font-size:13px}
+.nv a:last-child{border-right:0}.nv a:hover{background:#5dff6e;color:#000}
+.bx{border:2px solid #5dff6e;border-top:0;padding:12px 14px}
+.bx h2{font:bold 15px 'PT Mono',monospace;margin:4px 0 8px;letter-spacing:3px}
+.bx h2:before{content:"## "}
+.dim{color:#2e9c3a}.hi{color:#dfffe2;text-shadow:0 0 6px rgba(93,255,110,.8)}.amb{color:#ffc04a}
+#scr{height:58vh;min-height:340px;overflow-y:auto;white-space:pre-wrap;word-wrap:break-word;padding:2px 0 10px;text-shadow:0 0 5px rgba(93,255,110,.45)}
+#scr .me{color:#dfffe2}#scr .sys{color:#2e9c3a}#scr .rm{color:#dfffe2;font-weight:bold;letter-spacing:2px}#scr .end{color:#ffc04a}
+.st{display:flex;justify-content:space-between;border-top:1px dashed #2e9c3a;border-bottom:1px dashed #2e9c3a;padding:2px 0;font-size:13px;color:#2e9c3a}
+.in{display:flex;align-items:center;gap:6px;padding:8px 0}
+.in b{font-size:18px}
+#cmd{flex:1;min-width:0;background:#000;border:0;border-bottom:2px solid #5dff6e;color:#dfffe2;font:16px 'PT Mono',monospace;padding:4px 2px;outline:0;caret-color:#5dff6e}
+.keys{display:flex;flex-wrap:wrap;gap:4px}
+.keys button{background:#000;border:1px solid #2e9c3a;color:#5dff6e;font:13px 'PT Mono',monospace;padding:5px 8px;cursor:pointer;min-width:40px}
+.keys button:hover,.keys button:active{background:#5dff6e;color:#000}
+pre.map{font:13px/1.15 'PT Mono',monospace;overflow-x:auto;margin:6px 0;text-shadow:0 0 4px rgba(93,255,110,.5)}
+pre.map .r{color:#2e9c3a}pre.map .r.been{color:#dfffe2}pre.map .r.here{color:#000;background:#5dff6e;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{background:transparent;color:#5dff6e}}
+.plan{width:100%;display:block;image-rendering:pixelated;border:1px solid #2e9c3a}
+.corr{width:100%;display:block;image-rendering:pixelated;margin:4px 0 8px}
+details{border:1px dashed #2e9c3a;margin:8px 0;padding:6px 10px}
+summary{cursor:pointer;color:#dfffe2}summary:hover{background:#5dff6e;color:#000}
+.flip{display:inline-block;transform:scaleX(-1)}
+.bx p{margin:6px 0}.bx ul{margin:6px 0;padding-left:22px}
+table.log{border-collapse:collapse;width:100%}table.log td{border-bottom:1px dashed #1c5a22;padding:4px 6px;vertical-align:top}table.log td:first-child{white-space:nowrap;color:#dfffe2}
+.ft{text-align:center;font-size:12px;color:#2e9c3a;padding:6px 12px 30px;line-height:1.6}
+.tunduk-ring a{color:#b6ffbd}
+.gb-intro{color:#dfffe2}.gb-form td{padding:3px;color:#2e9c3a}.gb-form input,.gb-form textarea{background:#000;color:#dfffe2;border:1px solid #2e9c3a;font:14px 'PT Mono',monospace;max-width:100%}
+.gb-form input[type=submit]{background:#5dff6e;color:#000;border:0;padding:4px 14px;cursor:pointer;letter-spacing:2px}
+.gb-note{color:#ffc04a}.gb-count{color:#2e9c3a}
+.gb-entry{border-left:2px solid #5dff6e;margin:12px 0;padding:2px 10px}.gb-date{color:#2e9c3a;font-size:12px}.gb-reply{color:#dfffe2;margin:4px 0 0 16px}
+.gb-reply:before{content:"> "}
+@media(max-width:600px){.hd h1{font-size:26px;letter-spacing:6px}.nv a{flex:1 1 40%;border-bottom:2px solid #5dff6e}#scr{height:52vh;font-size:14px}pre.map{font-size:2vw}
+ .gb-form textarea,.gb-form input[type=text]{width:100%}}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-skazka.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="t"><div class="hd"><h1>ПОДВАЛ</h1><span>текстовая игра · хрущёвка, Нуржан · v1.0</span></div>
+<nav class="nv"><a href="index.html">играть</a><a href="map.html">карта</a><a href="walkthrough.html">прохождение (не надо)</a><a href="about.html">о подвале</a><a href="guestbook.html">стена</a></nav>
+<div class="bx"><h2>ПРОХОЖДЕНИЕ (НЕ НАДО)</h2>
+<p>Это игра на полчаса. Если ты читаешь это, значит, ты на двадцатой минуте и тебе кажется, что ты застрял. Ты не застрял.
+Ты просто ещё не попробовал ОЩУПАТЬ. Или ПОМОЩЬ. Или постоять и послушать.</p>
+<p>Но ладно. Подсказки спрятаны слоями, открывай по одной.</p>
+<details><summary>&gt; я правда застрял. одна подсказка</summary>
+<p>Перечитай мамину записку. Там всё написано. Мама всегда всё пишет.</p>
+<details><summary>&gt; перечитал. ещё одна</summary>
+<p>В темноте ничего не видно, но всё можно нащупать. А у телефона есть фонарик (ненадолго).</p>
+<details><summary>&gt; где свет?</summary>
+<p>Свет в щитовой. Пробку Жора унёс в мастерскую. Жора хранит мелочи в жестянках.</p>
+<details><summary>&gt; а ключ?</summary>
+<p>В воде. В кроссовках в воду не полезешь. Дворник держит сапоги в кладовке.</p>
+<details><summary>&gt; а кот?</summary>
+<p>Коты любят колбасу. У тебя в кармане бутерброд, который ты не хочешь есть. Совпадение? Кот живёт там, где видна луна.</p>
+<details><summary>&gt; всё, дай мне полное прохождение</summary>
+<p>Ладно. Но написано зеркально, чтобы глаз случайно не зацепился. Кнопка ниже переворачивает.</p>
+<p><button class="keys" style="background:#000;border:1px solid #5dff6e;color:#5dff6e;font:13px 'PT Mono',monospace;padding:5px 10px;cursor:pointer" onclick="var p=document.getElementById('full');p.classList.toggle('flip');this.textContent=p.classList.contains('flip')?'ПЕРЕВЕРНУТЬ':'ЗЕРКАЛО'">ПЕРЕВЕРНУТЬ</button></p>
+<p id="full" class="flip">с, с, з (мастерская), включить фонарик, взять жестянку, открыть жестянку, в, ю, з (щитовая), вкрутить пробку.
+з (кладовка), взять сапоги, надеть сапоги, в, в, с (трубы), постучать, с (продух), дать коту колбасу, ю, ю, в (ряд А), ю (ряд Б),
+позвонить, в (вода), взять ключ, з, с, открыть замок, в, взять огурцы, з, з, с, в (бойлерная), включить радио, сесть.
+10 из 10. Или вместо бойлерной: з, з, ю, наверх, и это тоже конец, 9 из 10.</p>
+</details></details></details></details></details></details></div>
+<div class="bx"><h2>ОТВЕТЫ НА ВОПРОСЫ</h2>
+<p><span class="hi">Можно ли умереть?</span> Нет. Это подвал, а не хоррор. Самое страшное тут это бойлер, и он добрый.<br>
+<span class="hi">Что будет, если сесть в кресло без огурцов?</span> Попробуй.<br>
+<span class="hi">Почему нет команды «спать»?</span> Есть. Она называется «ждать», и ты на ночной смене, так что нет, спать нельзя.<br>
+<span class="hi">Кто стучит в трубу?</span> Не знаю. Правда. В нашем доме кто-то стучит. Я однажды постучал в ответ. Мне ответили.<br>
+<span class="hi">Есть ли секретные слова?</span> Есть. Две штуки. Одна старая, как сами текстовые игры. Вторая про кота.</p></div>
+</div><div class="tunduk-ring" style="text-align:center;margin:20px auto 6px;padding:0 12px;font:13px/1.6 'PT Mono',monospace;color:#7dff8a"><a href="../asman/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../intourist/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../crawl/index.html','../marshrut/index.html','../shyrdak/index.html','../asman/index.html','../intourist/index.html','../tush/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div><div class="ft">nochnik · Нуржан, Третий микрорайон · написано в ночные смены, 2025–2026 · ни один кот не пострадал<br><a href="../top100.html"><img src="../img/cnt-podval.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>maps and tiles</title>
+<meta name="description" content="unofficial fan guide to Steppe Crawl, the roguelike from Talas: route map, bestiary with sprites, items, calling tier list, seed of the week">
+<meta name="keywords" content="Steppe Crawl, roguelike, fan guide, bestiary, tier list, Ene Malka, tamga, Manas Peak, Baatyr, Berkutchi, Talas, игра, гайд">
+<link rel="canonical" href="https://uyalar.net/crawl/map.html">
+<meta property="og:title" content="maps and tiles">
+<meta property="og:description" content="unofficial fan guide to Steppe Crawl, the roguelike from Talas: route map, bestiary with sprites, items, calling tier list, seed of the week">
+<meta property="og:url" content="https://uyalar.net/crawl/map.html">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+body{margin:0;background:#100e18 url(bg.png);color:#e8e0cc;font:21px/1.25 VT323,'Courier New',monospace}
+a{color:#e8c94a}a:hover{color:#fff}
+.wrap{max-width:980px;margin:0 auto;padding:0 12px}
+.top{padding:14px 0 4px;text-align:center}
+.top h1{margin:6px 0 4px;font:22px/1.4 'Press Start 2P',monospace;color:#d8a640;text-shadow:3px 3px 0 #3a2410,0 0 18px rgba(216,166,64,.35)}
+.top h1 span{color:#6fc46f}
+.top .sub{color:#a89cb8;margin:0}
+.banner{display:block;width:100%;image-rendering:pixelated;margin:10px 0 0;border:4px solid #000;box-shadow:0 0 0 2px #5a4a2a}
+.menu{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:12px 0 14px}
+.menu a{font:10px/1 'Press Start 2P',monospace;text-decoration:none;color:#e8e0cc;background:#2a2438;padding:9px 10px;box-shadow:inset -3px -3px 0 #17131f,inset 3px 3px 0 #4a4060}
+.menu a:hover,.menu a.on{background:#d8a640;color:#1a1208;box-shadow:inset -3px -3px 0 #8a6420,inset 3px 3px 0 #f8d880}
+.panel{background:rgba(29,26,43,.94);margin:0 0 16px;padding:14px 16px;border:3px solid #000;box-shadow:0 0 0 3px #3e3554,6px 6px 0 3px rgba(0,0,0,.5)}
+.panel h2{font:13px/1.5 'Press Start 2P',monospace;color:#6fc46f;margin:2px 0 10px}
+.panel h2:before{content:"> ";color:#d8a640}
+.panel h3{font:11px/1.5 'Press Start 2P',monospace;color:#d8a640;margin:14px 0 6px}
+.panel p{margin:6px 0}
+.dim{color:#a89cb8}.gold{color:#e8c94a}.grn{color:#6fc46f}.red{color:#ff6070}.blu{color:#7aa0f0}
+.official{display:block;text-align:center;background:#2c3a1e;border:3px dashed #6fc46f;padding:10px;margin:0 0 16px;text-decoration:none;color:#e8e0cc}
+.official b{font:11px/1.6 'Press Start 2P',monospace;color:#6fc46f}
+.cols{display:grid;grid-template-columns:3fr 2fr;gap:16px}
+.seed{background:#14121f;border:3px solid #d8a640;padding:10px 12px;position:relative}
+.seed .code{font:12px/1.6 'Press Start 2P',monospace;color:#e8c94a;letter-spacing:1px;word-break:break-all}
+.seed ul{margin:6px 0;padding-left:20px}
+.seed button,.btn{font:9px/1 'Press Start 2P',monospace;background:#6fc46f;color:#0e1a08;border:0;padding:9px 10px;cursor:pointer;box-shadow:inset -3px -3px 0 #3a7a3a,inset 3px 3px 0 #b0f0a0}
+.seed button:active,.btn:active{box-shadow:inset 3px 3px 0 #3a7a3a}
+#roll{margin-top:8px;padding:8px 10px;background:#0e0c16;border-left:4px solid #6fc46f;min-height:3em}
+.pix{image-rendering:pixelated;width:100%;display:block;border:3px solid #000}
+.log{font:19px/1.15 VT323,monospace;background:#000;color:#cfc8b8;padding:8px 10px;border:2px solid #3e3554;margin:8px 0}
+.log b{color:#ff6070;font-weight:normal}.log i{color:#6fc46f;font-style:normal}
+.news li{margin:4px 0}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:6px 14px;margin:10px 0 0;padding:0;list-style:none}
+.legend li{padding-left:34px;position:relative}
+.legend li span{position:absolute;left:0;top:1px;width:26px;height:22px;background:#d8a640;color:#1a1208;font:10px/22px 'Press Start 2P',monospace;text-align:center}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px}
+.tiles div{background:#14121f;padding:6px;font-size:18px;line-height:1.1;display:flex;gap:8px;align-items:center}
+.tiles img{width:40px;height:40px;image-rendering:pixelated;flex:none}
+.filt{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.filt button{font:9px/1 'Press Start 2P',monospace;background:#2a2438;color:#e8e0cc;border:0;padding:8px;cursor:pointer;box-shadow:inset -2px -2px 0 #17131f,inset 2px 2px 0 #4a4060}
+.filt button.on{background:#d8a640;color:#1a1208}
+.beasts{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px}
+.card{background:#1d1a2b;border:3px solid #000;box-shadow:0 0 0 3px #3e3554;padding:10px;display:grid;grid-template-columns:96px 1fr;gap:4px 12px;align-content:start}
+.card.boss{box-shadow:0 0 0 3px #b08a30}
+.card img{width:96px;height:96px;image-rendering:pixelated;grid-row:1/3;border:2px solid #000}
+.card h3{margin:2px 0 0;font:11px/1.5 'Press Start 2P',monospace}
+.card .gl{font:10px 'Press Start 2P',monospace;margin-right:6px;padding:2px 3px;background:#000}
+.card .st{font-size:18px;line-height:1.15;color:#a89cb8}
+.card .q{grid-column:1/-1;font-size:19px;line-height:1.2;margin:4px 0 0}
+.card .tip{grid-column:1/-1;font-size:19px;line-height:1.2;background:#14121f;padding:5px 8px;border-left:4px solid #6fc46f}
+.danger{color:#ff6070;letter-spacing:2px}
+.spoiler{filter:blur(6px);cursor:pointer;transition:filter .2s}.spoiler.open{filter:none}
+.tblw{overflow-x:auto}
+table.it{width:100%;border-collapse:collapse;font-size:19px;line-height:1.15}
+table.it th{font:9px/1.4 'Press Start 2P',monospace;color:#1a1208;background:#d8a640;padding:7px 6px;text-align:left;cursor:pointer;white-space:nowrap}
+table.it th:after{content:" \2195";opacity:.5}
+table.it td{padding:5px 6px;border-bottom:2px solid #2a2438;vertical-align:top}
+table.it tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.sw{display:inline-block;width:12px;height:12px;margin-right:5px;border:1px solid #000;vertical-align:middle}
+.stars{color:#e8c94a;white-space:nowrap}
+.tier{display:grid;grid-template-columns:64px 1fr;margin:0 0 6px;background:#14121f}
+.tier>b{display:flex;align-items:center;justify-content:center;font:20px 'Press Start 2P',monospace;color:#1a1208}
+.tier>div{padding:6px 10px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:#2a2438;padding:3px 8px 3px 4px;font-size:19px;line-height:1.2}
+.chip i{font:10px 'Press Start 2P',monospace;font-style:normal;margin-right:6px;padding:2px 3px;background:#000}
+.foot{text-align:center;color:#a89cb8;font-size:18px;padding:4px 10px 26px;line-height:1.3}
+.tunduk-ring a{color:#e8c94a}
+.gb-intro{margin:0 0 8px}.gb-form td{padding:3px;font-size:19px}.gb-form input,.gb-form textarea{background:#0e0c16;color:#e8e0cc;border:2px solid #3e3554;font:19px VT323,monospace;max-width:100%}
+.gb-form input[type=submit]{font:9px 'Press Start 2P',monospace;background:#6fc46f;color:#0e1a08;padding:8px;border:0;cursor:pointer}
+.gb-note{color:#6fc46f}.gb-count{color:#a89cb8}
+.gb-entry{background:#14121f;border-left:4px solid #d8a640;margin:10px 0;padding:6px 10px}.gb-date{color:#a89cb8;font-size:17px}.gb-reply{color:#6fc46f;margin:4px 0 0 14px}
+@media(max-width:700px){.cols{grid-template-columns:1fr}.top h1{font-size:15px}.panel{padding:12px 10px}.panel h2{font-size:11px}
+ .card{grid-template-columns:72px 1fr}.card img{width:72px;height:72px}.gb-form textarea{width:100%}.gb-form input[type=text]{width:100%}}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-kometa.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="wrap"><div class="top"><h1>STEPPE CRAWL <span>//</span> fan guide</h1>
+<p class="sub">unofficial · made by one player from Talas · not by the game's maker · the real game is at <a href="https://steppecrawl.online/">steppecrawl.online</a></p></div>
+<nav class="menu"><a href="index.html">home</a><a href="map.html">maps</a><a href="bestiary.html">bestiary</a><a href="items.html">items</a><a href="tiers.html">tier list</a><a href="guestbook.html">Guestbook</a></nav>
+<div class="panel"><h2>the road, as i draw it</h2>
+<p>The game never shows you the whole road at once, so I drew it. This is a <b>schematic</b>: the ten valleys are always
+in this order, but the doors to the regions turn up at a different valley each run, inside a range (that's the numbers
+after each region below). Hand-drawn tiles, one tile = nothing in particular.</p>
+<img class="pix" src="route.png" width="960" height="600" alt="pixel map of the Qara-Chik road from Kara-Oi Meadows to Manas Peak with the side regions">
+<ul class="legend"><li><span>1</span><b class="gold">Kara-Oi Meadows</b> · home end of the road. Junipers, marmots, jackals. Tökö likes it here.</li><li><span>2</span><b class="gold">Besh-Tash Valley</b> · five stones, a loud river. Water snakes in the shallows.</li><li><span>3</span><b class="gold">Kara-Koyun Valley</b> · empty yurt rings. Soodagers start here.</li><li><span>4</span><b class="gold">Uzun-Akmat</b> · spruce on the north side, wolves on the south. Believe it.</li><li><span>5</span><b class="gold">Kara-Suu Canyon</b> · red walls, black water. Archers. My most-died valley.</li><li><span>6</span><b class="gold">Chatkal Highlands</b> · where they carry the malka in felt pots. Nobody is carrying anything.</li><li><span>7</span><b class="gold">Ala-Bel Pass</b> · wind, almasty, the wind again.</li><li><span>8</span><b class="gold">Betpak-Dala</b> · the Hunger Steppe. You see everything and everything sees you.</li><li><span>9</span><b class="gold">Aksay Plateau</b> · the Kurultai ground under snow. Feels wrong in a good way.</li><li><span>10</span><b class="gold">Under Manas Peak</b> · the cleft. Three tamgas, then in.</li><li><span>Y</span><b class="gold">the White Yurts</b> · one level, every patron's altar. Door turns up in valleys 2-4.</li><li><span>T</span><b class="gold">Smugglers' Tunnels</b> · 2 levels, doors in 3-5. Bakai at the bottom. No tamga, just loot.</li><li><span>W</span><b class="gold">Arslanbob Woods</b> · 4 levels, doors in 4-6. Ak Börü + tamga of the Chubar.</li><li><span>S</span><b class="gold">Moiynkum Sands</b> · 3 levels, inside the Woods. Sary Chayan + tamga of the Boztorgoy.</li><li><span>K</span><b class="gold">Old Kurgans</b> · 3 levels, doors in 7-8. Golden Warrior + tamga of the Karakoyun.</li><li><span>B</span><b class="gold">Pass of the Black Blizzard</b> · 3 levels, doors in 7-9. Kara Boran Ene + tamga of the Tanıp.</li><li><span>H</span><b class="gold">Hidden Valley of Janyl</b> · behind the cleft. The Herald. The Ene Malka. Go home.</li></ul></div>
+<div class="panel"><h2>a valley, explored (Kara-Oi, one of my runs)</h2>
+<p>What valley 1 looked like in my W44 run, redrawn from memory with my tiles. Every valley is random; this is just to show
+how to read one. Monsters as letters like ASCII mode.</p>
+<img class="pix" src="valley.png" width="960" height="576" alt="pixel map of one explored valley with a river, junipers, a camp and the way on">
+<ul class="legend"><li><span>1</span>you start here, on the &lt; from the road</li><li><span>2</span>a herders' camp: yurts. Often an item or two inside</li><li><span>3</span>the river. Deep water (dark blue) you can't cross; shallows are slow</li><li><span>4</span>jackal pack (j j j) by the ford. Pull them back west, between the junipers</li><li><span>5</span>the ford, the only shallow crossing. Shallows are slow: never fight in them</li><li><span>6</span>a balbal, just decoration up here (in the Kurgans it would walk)</li><li><span>7</span>&gt; the way on. Press &gt; to travel, &gt; again to take it</li></ul></div>
+<div class="panel"><h2>my fan tileset</h2>
+<p>8×8 pixels each, drawn in a Python script on a laptop with a broken F5 key. The real game uses the Dungeon Crawl tiles
+plus its own Iradi ones (and an ASCII mode). Mine are only for maps on this site; take them if you want, just say where from.</p>
+<div class="tiles"><div><img src="t-grass.png" width="40" height="40" alt="">meadow</div><div><img src="t-grass2.png" width="40" height="40" alt="">meadow, tufts</div><div><img src="t-road.png" width="40" height="40" alt="">the road</div><div><img src="t-rock.png" width="40" height="40" alt="">rock wall</div><div><img src="t-juniper.png" width="40" height="40" alt="">juniper</div><div><img src="t-spruce.png" width="40" height="40" alt="">spruce</div><div><img src="t-shallow.png" width="40" height="40" alt="">shallow water</div><div><img src="t-deep.png" width="40" height="40" alt="">deep water</div><div><img src="t-sand.png" width="40" height="40" alt="">sand (Moiynkum)</div><div><img src="t-snow.png" width="40" height="40" alt="">snow (Blizzard)</div><div><img src="t-redrock.png" width="40" height="40" alt="">canyon wall</div><div><img src="t-yurt.png" width="40" height="40" alt="">yurt</div><div><img src="t-down.png" width="40" height="40" alt="">&gt; way on</div><div><img src="t-up.png" width="40" height="40" alt="">&lt; way back</div><div><img src="t-altar.png" width="40" height="40" alt="">altar</div><div><img src="t-balbal.png" width="40" height="40" alt="">balbal</div><div><img src="t-tamga.png" width="40" height="40" alt="">tamga }</div><div><img src="t-cleft.png" width="40" height="40" alt="">the sealed cleft</div></div></div>
+</div><div class="tunduk-ring" style="text-align:center;margin:18px auto 6px;padding:0 10px;font:20px/1.4 VT323,monospace;color:#e8e0cc"><a href="../kushfan/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../marshrut/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../marshrut/index.html','../shyrdak/index.html','../asman/index.html','../podval/index.html','../intourist/index.html','../tush/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div><div class="foot">dastan.bt · Talas · drawn on a laptop, written on marshrutka 22 · all tiles, sprites and maps on this site are my own fan art, the game uses different ones<br>
+names of monsters, items and places belong to Steppe Crawl · this guide is for game 0.9.4 · <a href="../top100.html"><img src="../img/cnt-crawl.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div>
+</body>
+</html>

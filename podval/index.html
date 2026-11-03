@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ПОДВАЛ</title>
+<meta name="description" content="подвал: текстовая игра про подвал хрущёвки в Нуржане. 12 комнат, трубы, кот, огурцы. играть в браузере">
+<meta name="keywords" content="подвал, текстовая игра, text adventure, parser, interactive fiction, хрущёвка, Нуржан, Nurzhan, кот, огурцы, podval">
+<link rel="canonical" href="https://uyalar.net/podval/">
+<meta property="og:title" content="ПОДВАЛ">
+<meta property="og:description" content="подвал: текстовая игра про подвал хрущёвки в Нуржане. 12 комнат, трубы, кот, огурцы. играть в браузере">
+<meta property="og:url" content="https://uyalar.net/podval/">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+html{background:#000}
+body{margin:0;background:#020502;color:#5dff6e;font:15px/1.5 'PT Mono','Courier New',monospace}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);z-index:9}
+a{color:#b6ffbd}a:hover{background:#5dff6e;color:#000}
+.t{max-width:900px;margin:0 auto;padding:0 12px}
+.hd{border:2px solid #5dff6e;margin:16px 0 0;padding:10px 12px;display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;justify-content:space-between}
+.hd h1{margin:0;font:bold 34px/1 'PT Mono',monospace;letter-spacing:10px;text-shadow:0 0 8px rgba(93,255,110,.6)}
+.hd span{color:#2e9c3a;font-size:13px}
+.nv{border:2px solid #5dff6e;border-top:0;display:flex;flex-wrap:wrap}
+.nv a{flex:1 1 auto;text-align:center;text-decoration:none;padding:6px 10px;border-right:2px solid #5dff6e;color:#5dff6e;text-transform:uppercase;letter-spacing:2px;font-size:13px}
+.nv a:last-child{border-right:0}.nv a:hover{background:#5dff6e;color:#000}
+.bx{border:2px solid #5dff6e;border-top:0;padding:12px 14px}
+.bx h2{font:bold 15px 'PT Mono',monospace;margin:4px 0 8px;letter-spacing:3px}
+.bx h2:before{content:"## "}
+.dim{color:#2e9c3a}.hi{color:#dfffe2;text-shadow:0 0 6px rgba(93,255,110,.8)}.amb{color:#ffc04a}
+#scr{height:58vh;min-height:340px;overflow-y:auto;white-space:pre-wrap;word-wrap:break-word;padding:2px 0 10px;text-shadow:0 0 5px rgba(93,255,110,.45)}
+#scr .me{color:#dfffe2}#scr .sys{color:#2e9c3a}#scr .rm{color:#dfffe2;font-weight:bold;letter-spacing:2px}#scr .end{color:#ffc04a}
+.st{display:flex;justify-content:space-between;border-top:1px dashed #2e9c3a;border-bottom:1px dashed #2e9c3a;padding:2px 0;font-size:13px;color:#2e9c3a}
+.in{display:flex;align-items:center;gap:6px;padding:8px 0}
+.in b{font-size:18px}
+#cmd{flex:1;min-width:0;background:#000;border:0;border-bottom:2px solid #5dff6e;color:#dfffe2;font:16px 'PT Mono',monospace;padding:4px 2px;outline:0;caret-color:#5dff6e}
+.keys{display:flex;flex-wrap:wrap;gap:4px}
+.keys button{background:#000;border:1px solid #2e9c3a;color:#5dff6e;font:13px 'PT Mono',monospace;padding:5px 8px;cursor:pointer;min-width:40px}
+.keys button:hover,.keys button:active{background:#5dff6e;color:#000}
+pre.map{font:13px/1.15 'PT Mono',monospace;overflow-x:auto;margin:6px 0;text-shadow:0 0 4px rgba(93,255,110,.5)}
+pre.map .r{color:#2e9c3a}pre.map .r.been{color:#dfffe2}pre.map .r.here{color:#000;background:#5dff6e;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{background:transparent;color:#5dff6e}}
+.plan{width:100%;display:block;image-rendering:pixelated;border:1px solid #2e9c3a}
+.corr{width:100%;display:block;image-rendering:pixelated;margin:4px 0 8px}
+details{border:1px dashed #2e9c3a;margin:8px 0;padding:6px 10px}
+summary{cursor:pointer;color:#dfffe2}summary:hover{background:#5dff6e;color:#000}
+.flip{display:inline-block;transform:scaleX(-1)}
+.bx p{margin:6px 0}.bx ul{margin:6px 0;padding-left:22px}
+table.log{border-collapse:collapse;width:100%}table.log td{border-bottom:1px dashed #1c5a22;padding:4px 6px;vertical-align:top}table.log td:first-child{white-space:nowrap;color:#dfffe2}
+.ft{text-align:center;font-size:12px;color:#2e9c3a;padding:6px 12px 30px;line-height:1.6}
+.tunduk-ring a{color:#b6ffbd}
+.gb-intro{color:#dfffe2}.gb-form td{padding:3px;color:#2e9c3a}.gb-form input,.gb-form textarea{background:#000;color:#dfffe2;border:1px solid #2e9c3a;font:14px 'PT Mono',monospace;max-width:100%}
+.gb-form input[type=submit]{background:#5dff6e;color:#000;border:0;padding:4px 14px;cursor:pointer;letter-spacing:2px}
+.gb-note{color:#ffc04a}.gb-count{color:#2e9c3a}
+.gb-entry{border-left:2px solid #5dff6e;margin:12px 0;padding:2px 10px}.gb-date{color:#2e9c3a;font-size:12px}.gb-reply{color:#dfffe2;margin:4px 0 0 16px}
+.gb-reply:before{content:"> "}
+@media(max-width:600px){.hd h1{font-size:26px;letter-spacing:6px}.nv a{flex:1 1 40%;border-bottom:2px solid #5dff6e}#scr{height:52vh;font-size:14px}pre.map{font-size:2vw}
+ .gb-form textarea,.gb-form input[type=text]{width:100%}}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-skazka.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="t"><div class="hd"><h1>ПОДВАЛ</h1><span>текстовая игра · хрущёвка, Нуржан · v1.0</span></div>
+<nav class="nv"><a href="index.html">играть</a><a href="map.html">карта</a><a href="walkthrough.html">прохождение (не надо)</a><a href="about.html">о подвале</a><a href="guestbook.html">стена</a></nav>
+<div class="bx" style="padding-top:8px"><div id="scr" aria-live="polite"><noscript>Игре нужен JavaScript. Это единственный скрипт на сайте, он ничего никуда не отправляет.</noscript></div>
+<div class="st"><span id="st1">ЛЕСТНИЦА</span><span id="st2">03:12</span></div>
+<div class="in"><b>&gt;</b><input id="cmd" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="что делать?" aria-label="команда"></div>
+<div class="keys"><button data-c="с">С ↑</button><button data-c="ю">Ю ↓</button><button data-c="з">З ←</button><button data-c="в">В →</button><button data-c="наверх">НАВЕРХ</button>
+<button data-c="осмотреться">ОСМОТРЕТЬСЯ</button><button data-c="ощупать">ОЩУПАТЬ</button><button data-c="взять всё">ВЗЯТЬ ВСЁ</button><button data-c="и">ВЕЩИ</button><button data-c="помощь">?</button></div>
+</div>
+<div class="bx"><p class="dim">игра сама запоминает, где ты остановился (в этом браузере). закрыл вкладку, открыл, продолжаешь.
+ЗАНОВО начинает сначала. ничего никуда не отправляется. на телефоне можно нажимать кнопки, но печатать интереснее.</p></div><script>
+(function(){
+var R={
+1:{n:'ЛЕСТНИЦА',lit:1,x:{n:2,u:0},
+ d:'Бетонные ступеньки вниз от подъезда. Наверху за дверью жёлтая лампочка подъезда, её свет доходит сюда наполовину. Пахнет сыростью, картошкой и кошками. На стене мелом: «ВИТЯ 2009» и стрелка вниз.\nНаверх: дверь в подъезд. Север: коридор.'},
+2:{n:'КОРИДОР',x:{s:1,w:8,e:4,n:3},
+ d:'Низкий коридор. Голая лампочка на проводе чуть качается, хотя ветра нет. У щитка гвоздь для ключей, на гвозде ничего. Двери, двери, номера краской.\nЗапад: щитовая. Восток: сарайки. Север: трубы. Юг: лестница.',
+ dk:'Темно. Ты ведёшь рукой по стене: побелка, потом холодный металл. Ты знаешь этот коридор с детства: щитовая на западе, сарайки на востоке, трубы на севере, лестница на юге.'},
+8:{n:'ЩИТОВАЯ',x:{e:2,w:11},
+ d:'Железный шкаф «НЕ ВЛЕЗАЙ — УБЬЁТ», черепу кто-то пририсовал усы. Щиток открыт. Под надписью «ПОДВАЛ» гнездо для пробки.\nВосток: коридор. Запад: кладовка дворника.',
+ dk:'Темно, только красная точка счётчика мигает: раз... раз... Рукой нащупываешь открытый щиток и пустое гнездо пробки под надписью, которую ты помнишь: «ПОДВАЛ».\nВосток: коридор. Запад: кладовка.'},
+11:{n:'КЛАДОВКА ДВОРНИКА',lit:1,x:{e:8},
+ d:'Узкая комната с окошком под потолком. В окошко светит уличный фонарь, оранжевым. Метла, вёдра, мешок соли на зиму, календарь 2014 года с котятами.\nВосток: щитовая.'},
+3:{n:'ТРУБЫ',x:{s:2,n:10,e:9,w:12},
+ d:'Здесь идут трубы отопления: толстые, в стекловате и серебрянке. Тепло, как в бане. Трубы гудят и иногда постукивают. На одной трубе вмятина в стекловате размером с кота.\nСевер: продух. Восток: бойлерная. Запад: мастерская. Юг: коридор.',
+ dk:'Темно и тепло. Трубы гудят где-то совсем рядом, как будто дом дышит во сне. Тук. Пауза. Тук.\nНа ощупь: север, восток, запад, юг.'},
+10:{n:'ПРОДУХ',lit:1,x:{s:3},
+ d:'Тупичок. В стене продух на улицу: квадратная дыра с решёткой, в ней луна и кусок снега. Холодно. На полу блюдце, пустое и вылизанное.\nЮг: трубы.'},
+12:{n:'МАСТЕРСКАЯ',x:{e:3},
+ d:'Угол дяди Жоры с пятого этажа. Верстак, тиски, банки с гвоздями, разложенными по размеру. Над верстаком календарь «Нуржан 2003» и фото «Жигулей», которых давно нет.\nВосток: трубы.',
+ dk:'Темно. Пахнет машинным маслом. Под ногой что-то звякает. Здесь мастерская дяди Жоры, ты помнишь верстак у стены и полку над ним.\nВосток: трубы.'},
+9:{n:'БОЙЛЕРНАЯ',x:{w:3},
+ d:'Большой бойлер, крашенный зелёным, с манометром: стрелка дрожит на «3». Он гудит низко и ровно, как кот размером с холодильник. В углу старое кресло с пледом, тумбочка, на ней радио «Океан» и чашка. Тут кто-то часто сидел.\nЗапад: трубы.'},
+4:{n:'САРАЙКИ, РЯД А',x:{w:2,e:5,s:6},
+ d:'Ряд деревянных сараек с дверями из сетки-рабицы. Номера краской: 11, 12, 13... В двенадцатой лыжи и ёлка с позапрошлого Нового года. Четырнадцатая ваша.\nВосток: клетка 14. Юг: ряд Б. Запад: коридор.',
+ dk:'Темно. Пальцы находят сетку, замки, чьи-то лыжи. Где-то тут ваша, четырнадцатая.\nВосток: клетка 14. Юг: ряд Б. Запад: коридор.'},
+5:{n:'КЛЕТКА 14',x:{w:4},
+ d:'Ваша сарайка. Полки до потолка: банки, банки, банки. Мамин почерк на крышках: «огурцы 2025», «помидоры 2025», «малина», «НЕ ТРОГАТЬ (компот)». Внизу коробка с кассетами.\nЗапад: ряд А.'},
+6:{n:'САРАЙКИ, РЯД Б',x:{n:4,e:7},
+ d:'Второй ряд, сюда свет доходит хуже. В открытой сарайке соседей стоит велосипед «Урал»: синий, со звонком, на руле висит детский шлем.\nСевер: ряд А. Восток: угол, где вода.',
+ dk:'Темно. Ты задеваешь плечом что-то металлическое. Дзынь. Велосипед. Ты знаешь его: «Урал» соседей.\nСевер: ряд А. Восток: угол, где вода.'},
+7:{n:'УГОЛ, ГДЕ ВОДА',x:{w:6},
+ d:'Угол, где пол ниже. Вода стоит здесь с весны, чёрная и спокойная, по щиколотку. Лампочка над ней отражается второй лампочкой. Капает.\nЗапад: ряд Б.',
+ dk:'Темно. Ты стоишь в воде, в темноте, в четыре утра. Капает. Хорошая жизнь.\nЗапад: ряд Б.'}
+};
+var I={
+phone:{n:'телефон',w:['телеф','фонар','phone','torch'],d:function(){return S.bat>0?'Телефон. Заряд '+S.bat+'%. Хватит на фонарик, ненадолго.':'Телефон. 0%. Чёрное зеркало.'}},
+sand:{n:'бутерброд с колбасой',w:['бутер','колбас','sandw','sausage'],d:'Бутерброд с докторской. Ты не голоден: после смены хочется только спать. Но кто-то здесь, может быть, голоднее.'},
+tin:{n:'жестянка из-под монпансье',w:['жестян','банка из','монпан','tin','box'],d:function(){return S.tinOpen?'Жестянка из-под монпансье. Пустая, пахнет леденцами 1990-х.':'Жестянка из-под монпансье. Что-то перекатывается внутри.'}},
+fuse:{n:'пробка',w:['пробк','fuse','предохр'],d:'Фарфоровая пробка, белая, целая. Дядя Жора хранит такие, как другие хранят фото.'},
+boots:{n:'резиновые сапоги',w:['сапог','boot','калош'],d:function(){return S.boots?'Сапоги на тебе. Сорок пятый размер, у тебя сорок второй. Хлюпают.':'Резиновые сапоги дворника, сорок пятый размер.'}},
+keys:{n:'ключ от 14',w:['ключ','key'],d:'Маленький ключ на верёвочке. На верёвочке бирка: «14». Мокрый.'},
+jar:{n:'банка огурцов',w:['огур','pickl','jar','трехлитр'],d:'Трёхлитровая банка огурцов, «2025», с укропом и чесноком. Тяжёлая. Мама будет довольна.'},
+jam:{n:'банка малины',w:['малин','варен','jam'],d:'Малиновое варенье. Тебя не просили. Но гости же.'}
+};
+var IT={11:['boots'],12:['tin'],5:['jar','jam'],7:[]};
+var S,busy=0,LS='podval.sav';
+function fresh(){return {r:1,inv:['phone','sand'],bat:3,torch:0,power:0,boots:0,tinOpen:0,cage:0,key:0,cat:0,fed:0,bell:0,knock:0,radio:0,t:192,v:[1],pts:{},felt:{},items:JSON.parse(JSON.stringify(IT)),over:0,tries:0};}
+var scr=document.getElementById('scr'),cmd=document.getElementById('cmd');
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function out(s,c){var d=document.createElement('div');if(c)d.className=c;d.innerHTML=s;scr.appendChild(d);scr.scrollTop=scr.scrollHeight;}
+function clock(){var m=S.t%1440;return ('0'+Math.floor(m/60)).slice(-2)+':'+('0'+m%60).slice(-2)}
+function score(){var n=0;for(var k in S.pts)n+=S.pts[k];return n}
+function pt(k,n){if(!S.pts[k]){S.pts[k]=n||1;out('[+'+(n||1)+' · очки: '+score()+'/10]','sys')}}
+function status(){document.getElementById('st1').textContent=R[S.r].n;document.getElementById('st2').textContent=clock()+' · очки '+score()+'/10 · '+(S.bat>0?S.bat+'%':'0%');}
+function save(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
+function lit(r){if(S.torch>0)return 1;if(R[r].lit)return 1;return S.power?1:0}
+function here(){return S.items[S.r]||[]}
+function look(){var r=R[S.r],L=lit(S.r);out(r.n,'rm');
+ if(S.r==4&&L)out(r.d+(S.cage?'\nДверь четырнадцатой открыта.':'\nНа четырнадцатой висячий замок. Мамин, 1987 года.'));
+ else if(S.r==7&&L)out(r.d+(S.key?'':'\nНа дне что-то блестит.'));
+ else out(L?r.d:(r.dk||r.d));
+ var it=here();if(it.length&&(L||S.felt[S.r]))out((L?'Здесь: ':'На ощупь здесь: ')+it.map(function(k){return I[k].n}).join(', ')+'.');
+ if(S.r==10&&!S.cat)out(S.fed?'':'У решётки сидит кот: серый, худой, одно ухо надорвано. Смотрит на тебя и на твой карман.');
+ if(S.cat&&S.r!=10)out('Кот идёт рядом и делает вид, что сам по себе.','dim');
+ if(S.cat&&S.r==10)out('Кот тут, рядом с тобой. Блюдце его больше не интересует.','dim');}
+function find(w,list){for(var i=0;i<list.length;i++){var it=I[list[i]];for(var j=0;j<it.w.length;j++)if(w.indexOf(it.w[j])>=0)return list[i];}return null}
+function has(k){return S.inv.indexOf(k)>=0}
+function del(k){S.inv.splice(S.inv.indexOf(k),1)}
+var DIR={n:['с','север','n','north','на север','северу'],s:['ю','юг','s','south','на юг','югу'],w:['з','запад','w','west','на запад','западу'],e:['в','восток','e','east','на восток','востоку'],
+ u:['вверх','наверх','up','u','вв','подняться','поднимись','выйти','выход','домой','out','exit','подъезд'],d:['вниз','down','d']};
+var DN={n:'север',s:'юг',w:'запад',e:'восток',u:'наверх',d:'вниз'};
+function dirOf(w){for(var k in DIR)if(DIR[k].indexOf(w)>=0)return k;return null}
+function go(k){var r=R[S.r];
+ if(!(k in r.x)){out(['Там стена. Бетон 1962 года, честный.','Туда не пройти.','Там только стена и чья-то надпись «Ж+А».'][S.t%3]);return}
+ var to=r.x[k];
+ if(to===0){ending1();return}
+ if(to==5&&!S.cage){out('Четырнадцатая заперта. Висячий замок, мамин, 1987 года. Его не уговорить.');return}
+ if(to==7&&!S.boots){out('Ты ступаешь в воду и тут же выходишь. Ледяная, по щиколотку, а ты в кроссовках. Нет. Нужны сапоги.');return}
+ if(to==9&&!S.power&&S.torch<=0){out('Дверь в бойлерную приоткрыта на ладонь. Внутри темно, и там что-то большое дышит: ууууу... ууууу...\nТы взрослый человек. Ты не пойдёшь туда в темноте.');return}
+ S.r=to;if(S.v.indexOf(to)<0)S.v.push(to);
+ if(to==9&&!S.power)out('Свет фонарика прыгает по стенам. Большое и дышащее оказывается бойлером. Ты выдыхаешь.','dim');
+ look();}
+function ending1(){
+ if(!has('jar')){S.tries++;out(S.tries>1?'Мама написала: «без огурцов не возвращайся». Мама не шутит. Мама никогда не шутит про огурцы.':'Ты поднимаешься на две ступеньки и вспоминаешь записку. Огурцы. Без огурцов нельзя.');return}
+ out('Ты поднимаешься по лестнице с банкой огурцов в руках.'+(S.cat?' Кот идёт за тобой, как будто всегда тут жил. На площадке он садится у вашей двери и ждёт.':'')+'\nНа кухне ставишь банку на стол, рядом с запиской. Пишешь внизу: «достал. ключ нашёл. пробку вернул Жоре (почти)».'+(S.cat?'\nКот спит на табуретке. Утром мама скажет «это что?», а потом «ну, на одну ночь». Это будет не одна ночь.':'')+'\nЗа окном первый автобус. 06:10. Ты ложишься спать.','end');
+ pt('end1',1);fin('КОНЕЦ. (Есть и вторая концовка.)');}
+function ending2(){
+ out('Ты садишься в кресло. Плед пахнет «Шипром» и кем-то, кто сидел тут годами.'+(S.radio?' Радио тихо играет.':'')+'\nОткрываешь банку. Огурец хрустит так громко, что бойлер, кажется, замолкает послушать.'+(S.cat?'\nКот запрыгивает тебе на колени, разворачивается три раза и ложится. Мурчит в такт бойлеру. Вы теперь вдвоём слушаете, как гудит дом: девять подъездов, сорок пять квартир, все спят, а вы нет.':'\nТы сидишь один и слушаешь, как гудит дом: все спят, а ты нет. Где-то за трубами, наверное, сидит кот. Может, в следующий раз.')+'\nКогда ты поднимаешься наверх, уже светло. Банку ты несёшь бережно: одного огурца не хватает. Мама заметит. Мама всегда замечает.','end');
+ pt('end2',S.cat?2:1);fin('КОНЕЦ. ТЁПЛАЯ КОНЦОВКА.');}
+function fin(t){S.over=1;out('\n=== '+t+' ===\nОчки: '+score()+' из 10. Ходов: '+(S.t-192)+'.\nНаберите ЗАНОВО, чтобы спуститься ещё раз.','end');
+ try{var e=JSON.parse(localStorage.getItem('podval.end')||'[]');if(e.indexOf(t)<0)e.push(t);localStorage.setItem('podval.end',JSON.stringify(e))}catch(x){}}
+var V={look:['осмотреться','оглядеться','смотреть','смотри','посмотреть','осмотрись','оглянуться','look','l','о','осм'],
+ exam:['осмотреть','изучить','рассмотреть','читать','прочитать','examine','x','read','check','что'],
+ go:['идти','иди','пойти','пойди','go','walk','бежать','беги','шагнуть'],
+ take:['взять','возьми','бери','брать','забрать','достать','достань','поднять','подними','take','get','grab','pick'],
+ drop:['бросить','брось','положить','положи','оставить','drop','put'],
+ inv:['и','инв','инвентарь','карманы','вещи','i','inv','inventory'],
+ open:['открыть','открой','отпереть','отопри','отомкнуть','open','unlock'],
+ use:['вкрутить','вкрути','вставить','вставь','ввернуть','использовать','use','insert','screw','починить'],
+ wear:['надеть','надень','обуть','обуться','обуй','wear'],
+ give:['дать','дай','покормить','покорми','кормить','угостить','угости','отдать','give','feed'],
+ pet:['погладить','погладь','гладить','pet','stroke'],
+ ring:['позвонить','звонить','звякнуть','ring','дзынь'],
+ listen:['слушать','послушать','прислушаться','listen'],
+ knock:['постучать','стучать','стукнуть','постучи','knock'],
+ sit:['сесть','сядь','садиться','сидеть','sit'],
+ on:['включить','включи','зажечь','on','light'],
+ off:['выключить','выключи','off'],
+ feel:['ощупать','пощупать','щупать','нащупать','искать','обыскать','шарить','feel','search','grope'],
+ wait:['ждать','подождать','жди','wait','z','спать'],
+ eat:['съесть','есть','ешь','кушать','eat'],
+ help:['помощь','помоги','help','?','h','команды','справка'],
+ restart:['заново','restart','рестарт','сначала'],
+ score:['очки','счёт','score']};
+function verb(w){for(var k in V)if(V[k].indexOf(w)>=0)return k;return null}
+function tick(){S.t++;if(S.torch>0){S.torch--;if(S.torch==0){S.bat=0;out('Фонарик моргает и гаснет. Телефон умер: 0%. Опять темно.','sys')}}}
+function run(raw){
+ var s=raw.toLowerCase().replace(/ё/g,'е').replace(/[.,!]/g,' ').trim();if(!s)return;
+ out('&gt; '+esc(raw),'me');
+ if(busy==1){busy=0;if(/^(да|д|y|yes|ага)/.test(s)){out('Продолжаем. Ты снова внизу.','sys');look();status();return}S=fresh();save();intro();return}
+ if(s=='xyzzy'||s=='plugh'){out('Голос из трубы, очень тихо: «не балуйся». Потом: тук-тук.');return}
+ if(/^(мяу|meow|кис|кис-кис|кыс)/.test(s)){out(S.r==10||S.cat?'Кот отвечает: «мрр». Это значит «колбаса есть?».':'Где-то далеко за трубами: «мяу». Кот есть. Где-то.');return}
+ var ws=s.split(/\s+/),w0=ws[0],rest=ws.slice(1).join(' ').replace(/^(на|в|во|к|ко|с|со|из|to|the|at|a)\s+/,'');
+ if(S.over&&verb(w0)!='restart'){out('Игра окончена. ЗАНОВО, чтобы начать сначала.','sys');return}
+ var dk=dirOf(s)||dirOf(w0);var v=verb(w0);
+ if(!v&&dk){tick();go(dk);fin2();return}
+ if(v=='go'){var d2=dirOf(rest)||dirOf(ws[ws.length-1]);if(d2){tick();go(d2)}else out('Куда? Север, юг, запад, восток, наверх.');fin2();return}
+ if(v=='look'&&rest&&rest!='вокруг'&&rest!='around')v='exam';
+ tick();
+ switch(v){
+ case 'look':look();break;
+ case 'help':out('Пиши глаголами, как в старых играх: ИДИ НА СЕВЕР (или С, С.Ю.З.В, НАВЕРХ), ОСМОТРЕТЬСЯ (О), ОСМОТРЕТЬ ВЕЛОСИПЕД, ВЗЯТЬ КЛЮЧ, ОТКРЫТЬ, НАДЕТЬ, ВКРУТИТЬ, ДАТЬ, ПОГЛАДИТЬ, СЛУШАТЬ, ПОСТУЧАТЬ, ОЩУПАТЬ, СЕСТЬ, ВКЛЮЧИТЬ, И (инвентарь), ОЧКИ, ЗАНОВО.\nEnglish works too: n s e w up, look, take key, open, wear boots, feed cat.\nВ темноте вещи не видно, но их можно нащупать.','sys');break;
+ case 'inv':out('У тебя: '+S.inv.map(function(k){return I[k].n+(k=='boots'&&S.boots?' (надеты)':'')}).join(', ')+'.');break;
+ case 'score':out('Очки: '+score()+' из 10. Время: '+clock()+'.','sys');break;
+ case 'restart':S=fresh();save();scr.innerHTML='';intro();break;
+ case 'wait':out(['Ты стоишь и слушаешь, как гудит дом.','Проходит минута. Где-то капает.','Ничего не происходит. Это подвал, тут ничего не происходит уже шестьдесят лет.'][S.t%3]);break;
+ case 'eat':if(/огур|pickl/.test(rest)&&has('jar'))out(S.r==9?'Вот бы сесть для этого в кресло.':'Прямо тут, стоя, из трёхлитровой банки? Нет. Есть места получше.');else if(find(rest,['sand'])&&has('sand'))out('Ты не голоден. После смены хочется только спать. А кто-то здесь, может быть, голоднее.');else out('Нечего есть. Это подвал, а не столовая.');break;
+ case 'listen':if(S.r==3)out('Трубы гудят низко, иногда стучат: тук... тук-тук. Как будто кто-то наверху тоже не спит.');else if(S.r==9)out('Бойлер гудит ровно, как огромный кот. Ууууу. Ууууу.');else if(S.r==10)out('С улицы: снег скрипит под чьими-то шагами, далеко лает собака. И тихое «мрр» у решётки.');else out('Капает. Где-то гудят трубы. Где-то за стеной смывают воду на третьем этаже.');break;
+ case 'knock':if(S.r==3){out('Ты стучишь по трубе ключом... нет, костяшками: тук-тук.\nПауза.\nСверху: тук-тук-тук. Кто-то на пятом этаже тоже не спит. Тебе почему-то становится спокойно.');pt('knock')}else out('Ты стучишь по стене. Стена молчит. Бетон не разговаривает.');break;
+ case 'feel':var h=here();S.felt[S.r]=1;if(lit(S.r))out('Зачем на ощупь, всё же видно.');else out(h.length?'Ты шаришь руками в темноте и нащупываешь: '+h.map(function(k){return I[k].n}).join(', ')+'.':(S.r==7?'Ты шаришь руками в ледяной воде. Нет. Только не в темноте.':'Пыль, паутина, холодная стена. Больше ничего.'));break;
+ case 'on':if(/фонар|телеф|torch|phone/.test(rest)||!rest){if(S.bat<=0)out('Телефон мёртв. 0%.');else if(S.torch>0)out('Фонарик уже горит.');else{S.torch=14;S.bat=2;out('Ты включаешь фонарик. 2%. Минут на пятнадцать, если повезёт.');look()}}
+  else if(/радио|океан|radio/.test(rest)){if(S.r!=9)out('Здесь нет радио.');else{S.radio=1;out('Ты крутишь ручку «Океана». Шипение, потом тихая скрипка, потом голос: «...в Нуржане ночью минус два, ясно, к утру ветер стихнет...». Ты оставляешь радио играть.')}}
+  else if(/свет|ламп|light/.test(rest))out(S.power?'Свет и так горит.':'Выключатель щёлкает. Ничего. В щитовой нет пробки.');else out('Что включить?');break;
+ case 'off':if(/фонар|телеф|torch/.test(rest)&&S.torch>0){S.torch=0;S.bat=Math.max(S.bat,1);out('Ты выключаешь фонарик. Бережёшь последний процент.')}else out('Тут нечего выключать.');break;
+ case 'exam':exam(rest);break;
+ case 'take':take(rest);break;
+ case 'drop':var k=find(rest,S.inv);if(!k)out('У тебя этого нет.');else if(k=='jar'){out('Поставить банку на бетон? После всего? Нет.')}else{del(k);if(k=='boots')S.boots=0;(S.items[S.r]=S.items[S.r]||[]).push(k);out('Ты оставляешь '+I[k].n+'.')}break;
+ case 'open':openx(rest);break;
+ case 'use':usex(rest);break;
+ case 'wear':if(!find(rest||'сапог',['boots'])){out('Надеть что?');break}if(!has('boots'))out('У тебя нет сапог.');else if(S.boots)out('Уже на тебе.');else{S.boots=1;out('Ты надеваешь сапоги дворника прямо на кроссовки. Сорок пятый размер. Хлюп. Хлюп. Теперь вода тебе не страшна.');pt('boots')}break;
+ case 'give':givex(rest);break;
+ case 'pet':if(!/кот|cat|кош/.test(rest)&&rest)out('Погладить '+esc(rest)+'? Странное желание, но ладно. Ничего не происходит.');else if(S.cat)out('Кот мурчит и бодает тебя головой в колено. Мир не так плох.');else if(S.r==10)out('Ты протягиваешь руку. Кот отходит на шаг и смотрит на твой карман. Сначала колбаса, потом нежности.');else out('Здесь нет кота. Кот где-то там, где холодно и видна луна.');break;
+ case 'ring':if(S.r==6){out('Дзынь-дзынь! Звонок «Урала» звенит на весь подвал.'+(S.cat?' Кот смотрит на тебя с осуждением.':' Где-то на севере, за трубами, отвечает кот: «мяу?»'));pt('bell')}else out('Тут нечем звонить. Телефоном? В четыре утра? Кому?');break;
+ case 'sit':if(S.r==9){if(!has('jar'))out('Ты садишься в кресло. Хорошо. Но тебя наверху ждут огурцы, а ты без огурцов. Ты встаёшь.');else ending2()}else out('На бетон? Ты не настолько устал. Почти настолько, но нет.');break;
+ default:out(['Не понимаю. Напиши ПОМОЩЬ.','Это слово подвалу незнакомо. ПОМОЩЬ — список команд.','Трубы гудят в ответ, но смысла в этом нет. Попробуй ПОМОЩЬ.'][S.t%3]);S.t--;
+ }
+ fin2();
+}
+function fin2(){status();save();}
+function exam(w){var L=lit(S.r);
+ var k=find(w,S.inv);if(k){var d=I[k].d;out(typeof d=='function'?d():d);return}
+ k=find(w,here());if(k&&(L||S.felt[S.r])){var d2=I[k].d;out(typeof d2=='function'?d2():d2);return}
+ if(!L&&S.torch<=0){out('Темно. Не видно ничего, кроме темноты.');return}
+ if(/кот|cat/.test(w)&&(S.r==10||S.cat)){out(S.cat?'Твой кот. Ну, не твой. Но идёт за тобой. Серый, худой, ухо надорвано, глаза зелёные, как экран старого компьютера.':'Серый, худой, одно ухо надорвано. Глаза зелёные. Он смотрит на твой карман, где бутерброд.');return}
+ var F={2:[['гвозд','Гвоздь у щитка. Мама вешала сюда ключ от 14-й. Теперь не вешает: ключ в воде, ты знаешь из записки.']],
+ 8:[['щит|гнезд|пробк|счетч','Под надписью «ПОДВАЛ» '+(S.power?'сидит целая пробка. Счётчик крутится.':'пустое гнездо пробки. Пробку Жора унёс чинить ещё летом.')],['череп|ус','Череп с усами. Это рисовал Витя (см. лестницу) в 2009-м. Теперь Витя в Талас уехал, а усы остались.']],
+ 11:[['календ','Календарь 2014 года, котята в корзинке. Июль. С тех пор июль.'],['окн|фонар','Уличный фонарь светит в окошко. На снегу следы, маленькие, кошачьи.'],['мет|ведр|сол','Инвентарь дворника. Дворник у нас один на три дома. Он хороший, но его никто никогда не видел.']],
+ 12:[['верст|тиск|гвозд','Гвозди разложены по банкам по размеру: 20, 40, 70, 100 мм. Дядя Жора инженер с завода, на пенсии, а порядок остался.'],['полк','На полке жестянки, коробки. Одна из-под монпансье.'],['календ|жигул|фото','«Жигули» шестой модели, вишнёвые. На обороте: «Жора и Шестёрка, 1991».']],
+ 3:[['труб|стекл|вмят','Вмятина в стекловате тёплая. Кот тут спит. Сейчас его нет.']],
+ 10:[['продух|решет|луна|окн','Сквозь решётку видно луну и кусок двора: качели, снег, чья-то «Нива». Холодный воздух пахнет снегом.'],['блюд','Блюдце. Вылизано до блеска. Кто-то его кормит. Сегодня, видимо, никто.']],
+ 9:[['бойлер|маномет','Манометр показывает 3. Ты не знаешь, хорошо это или плохо, но бойлер спокоен, значит, хорошо.'],['кресл|плед','Старое кресло, плед в клетку. В таком хорошо сидеть, когда у тебя есть что-то хорошее в руках.'],['радио|океан','Радио «Океан», серое. Ручки целые. Можно ВКЛЮЧИТЬ.'],['чашк','Чашка с надписью «Лучшему дедушке». Чья — неизвестно.']],
+ 4:[['замок|двер|14|клетк','Висячий замок на четырнадцатой. '+(S.cage?'Открыт.':'Заперт.')],['лыж|елк','Лыжи «Росинка» и ёлка с игрушками прямо на ней. Кто-то очень не любит разбирать ёлку.']],
+ 5:[['кассет|короб','Кассеты: «Сборник 98», «Мама танцы», «Ласковый май», «тюнтолк — Jolchu» (папина). Пусть лежат.'],['компот|не трог','«НЕ ТРОГАТЬ (компот)». Ты не трогаешь. Ты тут вырос.'],['полк','Банки до потолка. Мама закатывает с 1996 года и не собирается останавливаться.']],
+ 6:[['велос|урал|звон|шлем','Велосипед «Урал», синий, тяжёлый, как трактор. Звонок блестит. Так и хочется ПОЗВОНИТЬ.']],
+ 7:[['вод|дно|блест','Вода чёрная, но лампочка отражается. '+(S.key?'На дне больше ничего не блестит.':'На дне что-то блестит. Маленькое. С биркой.')]],
+ 1:[['надпис|вит|мел|стрел','«ВИТЯ 2009» и стрелка вниз. Витя был тут. Витя ушёл. Ты остался.']]};
+ var a=F[S.r]||[];for(var i=0;i<a.length;i++)if(new RegExp(a[i][0]).test(w)){out(a[i][1]);return}
+ if(!w){look();return}
+ out('Ничего особенного. Это подвал.');}
+function take(w){var L=lit(S.r),h=here();
+ if(/вс[её]|all|everything/.test(w)){if(!h.length){out('Тут нечего брать.');return}if(!L&&!S.felt[S.r]){out('Темно. Сначала нащупай что-нибудь.');return}h.slice().forEach(function(k){take(I[k].w[0])});return}
+ if(S.r==7&&/ключ|key|блест/.test(w)&&!S.key){if(!S.power&&S.torch<=0){out('В темноте шарить в ледяной воде? Нет.');return}S.key=1;S.inv.push('keys');out('Ты наклоняешься (сапоги хлюпают) и достаёшь из воды ключ на верёвочке. Бирка: «14». Мама, ну как.');pt('key');return}
+ if(/кот|cat/.test(w)&&(S.r==10||S.cat)){out(S.cat?'Ты берёшь кота на руки. Он терпит три секунды и спрыгивает. Он пойдёт сам.':'Кот отходит. Сначала колбаса, потом всё остальное.');return}
+ var k=find(w,h);if(!k){out(w?(S.inv.length&&find(w,S.inv)?'Это уже у тебя.':'Тут такого нет.'):'Взять что?');return}
+ if(!L&&!S.felt[S.r]){out('Темно. Ты не видишь, что брать. Можно ОЩУПАТЬ.');return}
+ h.splice(h.indexOf(k),1);S.inv.push(k);
+ out({boots:'Ты берёшь резиновые сапоги. Сорок пятый размер. Ну и ладно.',tin:'Ты берёшь жестянку из-под монпансье. Внутри что-то перекатывается.',jar:'Ты снимаешь с полки трёхлитровую банку огурцов «2025». Вот она. Тяжёлая и прекрасная.',jam:'Ты берёшь и малину. На всякий случай.'}[k]||('Взято: '+I[k].n+'.'));
+ if(k=='jar')pt('jar');}
+function openx(w){
+ if(/жестян|монпан|tin|box/.test(w)||(!w&&has('tin'))){if(!has('tin')){out('У тебя нет жестянки.');return}if(S.tinOpen){out('Уже открыта.');return}S.tinOpen=1;S.inv.push('fuse');out('Крышка поддаётся с третьего раза. Внутри две пробки: одна чёрная, горелая, другая белая, целая. Целую ты берёшь.');return}
+ if(/замок|двер|клетк|14|сара|lock|door|cage/.test(w)||(!w&&S.r==4)){if(S.r!=4){out('Здесь нечего открывать.');return}if(S.cage){out('Уже открыто.');return}if(!has('keys')){out('Замок заперт. Ключ от четырнадцатой, по словам мамы, где-то в воде.');return}if(!lit(S.r)){out('В темноте ты не попадаешь ключом в замок. Три раза. Нужен свет.');return}S.cage=1;out('Ключ поворачивается туго, с хрустом. Замок открывается. Четырнадцатая ваша, опять.');pt('cage');return}
+ if(/бойлер|котел/.test(w)){out('Бойлер не открывают. Бойлер уважают.');return}
+ out('Это не открывается.');}
+function usex(w){
+ if(/пробк|fuse/.test(w)||(/щит/.test(w)&&has('fuse'))){if(!has('fuse')){out('У тебя нет пробки.');return}if(S.r!=8){out('Пробку вкручивают в щитовой.');return}del('fuse');S.power=1;out('Ты вкручиваешь пробку в гнездо «ПОДВАЛ». Щелчок.\nПо всему подвалу одна за другой загораются лампочки: коридор, трубы, сарайки... Где-то далеко бойлерная тоже светится жёлтым. Подвал из страшного сразу становится просто подвалом.');pt('power');if(S.torch>0){S.torch=0;S.bat=Math.max(1,S.bat);out('Ты выключаешь фонарик. Последний процент пригодится.','sys')}return}
+ if(/ключ|key/.test(w)){openx('замок');return}
+ if(/сапог|boot/.test(w)){run('надеть сапоги');S.t--;return}
+ if(/фонар|телеф|phone/.test(w)){run('включить фонарик');S.t--;return}
+ if(/звон|велос|bell/.test(w)){run('позвонить');S.t--;return}
+ out('Не понятно, как это использовать.');}
+function givex(w){
+ if(!/кот|cat|кош|колбас|бутер|sand|sausage/.test(w)&&w){out('Дать кому? Тут, кроме тебя, только кот. Если найдёшь.');return}
+ if(S.r!=10&&!S.cat){out('Тут некого кормить. Кот где-то там, где холодно и видна луна.');return}
+ if(S.cat){out('Кот уже поел. Теперь он просто с тобой.');return}
+ if(!has('sand')){out('Тебе нечего дать коту.');return}
+ del('sand');S.fed=1;S.cat=1;out('Ты разламываешь бутерброд и кладёшь колбасу в блюдце. Кот подходит, нюхает, ест быстро и аккуратно, как будто стесняется. Потом трётся о твою ногу, один раз.\nКогда ты уходишь, он идёт следом.');pt('cat');}
+function intro(){
+ out('ПОДВАЛ v1.0 · текстовая игра · nochnik, 2025–2026\nНабери ПОМОЩЬ, если что. English commands work too.\n','sys');
+ out('03:12. Ты пришёл со смены. Мама спит. На кухонном столе записка:\n\n  «Костя! Достань из подвала банку огурцов, в субботу гости.\n   Ключ от 14-й я в апреле уронила в углу, где вода, не ругайся.\n   Пробку от света Жора забрал чинить, у него в мастерской.\n   Целую. Мама.»\n\nТы вздыхаешь, кладёшь в карман бутерброд, которым собирался поужинать, и спускаешься.\n');
+ look();status();}
+try{var sv=localStorage.getItem(LS);if(sv){S=JSON.parse(sv);if(!S.v||S.over)throw 0;out('ПОДВАЛ v1.0','sys');out('Ты уже спускался сюда. '+R[S.r].n+', '+clock()+'. Продолжить? (да/нет)');busy=1;status();}else throw 0;}catch(e){S=fresh();intro();}
+var hist=[],hi=0;
+cmd.addEventListener('keydown',function(e){if(e.key=='Enter'){var v=cmd.value;cmd.value='';if(v.trim()){hist.push(v);hi=hist.length}run(v)}else if(e.key=='ArrowUp'&&hi>0){cmd.value=hist[--hi]}else if(e.key=='ArrowDown'&&hi<hist.length){cmd.value=hist[++hi]||''}});
+document.querySelectorAll('.keys button').forEach(function(b){b.onclick=function(){run(b.dataset.c);if(window.innerWidth>700)cmd.focus()}});
+document.getElementById('scr').onclick=function(){if(window.innerWidth>700)cmd.focus()};
+if(window.innerWidth>700)cmd.focus();
+})();
+</script>
+</div><div class="tunduk-ring" style="text-align:center;margin:20px auto 6px;padding:0 12px;font:13px/1.6 'PT Mono',monospace;color:#7dff8a"><a href="../asman/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../intourist/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../crawl/index.html','../marshrut/index.html','../shyrdak/index.html','../asman/index.html','../intourist/index.html','../tush/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div><div class="ft">nochnik · Нуржан, Третий микрорайон · написано в ночные смены, 2025–2026 · ни один кот не пострадал<br><a href="../top100.html"><img src="../img/cnt-podval.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STEPPE CRAWL // fan guide (unofficial)</title>
+<meta name="description" content="unofficial fan guide to Steppe Crawl, the roguelike from Talas: route map, bestiary with sprites, items, calling tier list, seed of the week">
+<meta name="keywords" content="Steppe Crawl, roguelike, fan guide, bestiary, tier list, Ene Malka, tamga, Manas Peak, Baatyr, Berkutchi, Talas, игра, гайд">
+<link rel="canonical" href="https://uyalar.net/crawl/">
+<meta property="og:title" content="STEPPE CRAWL // fan guide (unofficial)">
+<meta property="og:description" content="unofficial fan guide to Steppe Crawl, the roguelike from Talas: route map, bestiary with sprites, items, calling tier list, seed of the week">
+<meta property="og:url" content="https://uyalar.net/crawl/">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+body{margin:0;background:#100e18 url(bg.png);color:#e8e0cc;font:21px/1.25 VT323,'Courier New',monospace}
+a{color:#e8c94a}a:hover{color:#fff}
+.wrap{max-width:980px;margin:0 auto;padding:0 12px}
+.top{padding:14px 0 4px;text-align:center}
+.top h1{margin:6px 0 4px;font:22px/1.4 'Press Start 2P',monospace;color:#d8a640;text-shadow:3px 3px 0 #3a2410,0 0 18px rgba(216,166,64,.35)}
+.top h1 span{color:#6fc46f}
+.top .sub{color:#a89cb8;margin:0}
+.banner{display:block;width:100%;image-rendering:pixelated;margin:10px 0 0;border:4px solid #000;box-shadow:0 0 0 2px #5a4a2a}
+.menu{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:12px 0 14px}
+.menu a{font:10px/1 'Press Start 2P',monospace;text-decoration:none;color:#e8e0cc;background:#2a2438;padding:9px 10px;box-shadow:inset -3px -3px 0 #17131f,inset 3px 3px 0 #4a4060}
+.menu a:hover,.menu a.on{background:#d8a640;color:#1a1208;box-shadow:inset -3px -3px 0 #8a6420,inset 3px 3px 0 #f8d880}
+.panel{background:rgba(29,26,43,.94);margin:0 0 16px;padding:14px 16px;border:3px solid #000;box-shadow:0 0 0 3px #3e3554,6px 6px 0 3px rgba(0,0,0,.5)}
+.panel h2{font:13px/1.5 'Press Start 2P',monospace;color:#6fc46f;margin:2px 0 10px}
+.panel h2:before{content:"> ";color:#d8a640}
+.panel h3{font:11px/1.5 'Press Start 2P',monospace;color:#d8a640;margin:14px 0 6px}
+.panel p{margin:6px 0}
+.dim{color:#a89cb8}.gold{color:#e8c94a}.grn{color:#6fc46f}.red{color:#ff6070}.blu{color:#7aa0f0}
+.official{display:block;text-align:center;background:#2c3a1e;border:3px dashed #6fc46f;padding:10px;margin:0 0 16px;text-decoration:none;color:#e8e0cc}
+.official b{font:11px/1.6 'Press Start 2P',monospace;color:#6fc46f}
+.cols{display:grid;grid-template-columns:3fr 2fr;gap:16px}
+.seed{background:#14121f;border:3px solid #d8a640;padding:10px 12px;position:relative}
+.seed .code{font:12px/1.6 'Press Start 2P',monospace;color:#e8c94a;letter-spacing:1px;word-break:break-all}
+.seed ul{margin:6px 0;padding-left:20px}
+.seed button,.btn{font:9px/1 'Press Start 2P',monospace;background:#6fc46f;color:#0e1a08;border:0;padding:9px 10px;cursor:pointer;box-shadow:inset -3px -3px 0 #3a7a3a,inset 3px 3px 0 #b0f0a0}
+.seed button:active,.btn:active{box-shadow:inset 3px 3px 0 #3a7a3a}
+#roll{margin-top:8px;padding:8px 10px;background:#0e0c16;border-left:4px solid #6fc46f;min-height:3em}
+.pix{image-rendering:pixelated;width:100%;display:block;border:3px solid #000}
+.log{font:19px/1.15 VT323,monospace;background:#000;color:#cfc8b8;padding:8px 10px;border:2px solid #3e3554;margin:8px 0}
+.log b{color:#ff6070;font-weight:normal}.log i{color:#6fc46f;font-style:normal}
+.news li{margin:4px 0}
+.legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:6px 14px;margin:10px 0 0;padding:0;list-style:none}
+.legend li{padding-left:34px;position:relative}
+.legend li span{position:absolute;left:0;top:1px;width:26px;height:22px;background:#d8a640;color:#1a1208;font:10px/22px 'Press Start 2P',monospace;text-align:center}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:8px}
+.tiles div{background:#14121f;padding:6px;font-size:18px;line-height:1.1;display:flex;gap:8px;align-items:center}
+.tiles img{width:40px;height:40px;image-rendering:pixelated;flex:none}
+.filt{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.filt button{font:9px/1 'Press Start 2P',monospace;background:#2a2438;color:#e8e0cc;border:0;padding:8px;cursor:pointer;box-shadow:inset -2px -2px 0 #17131f,inset 2px 2px 0 #4a4060}
+.filt button.on{background:#d8a640;color:#1a1208}
+.beasts{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px}
+.card{background:#1d1a2b;border:3px solid #000;box-shadow:0 0 0 3px #3e3554;padding:10px;display:grid;grid-template-columns:96px 1fr;gap:4px 12px;align-content:start}
+.card.boss{box-shadow:0 0 0 3px #b08a30}
+.card img{width:96px;height:96px;image-rendering:pixelated;grid-row:1/3;border:2px solid #000}
+.card h3{margin:2px 0 0;font:11px/1.5 'Press Start 2P',monospace}
+.card .gl{font:10px 'Press Start 2P',monospace;margin-right:6px;padding:2px 3px;background:#000}
+.card .st{font-size:18px;line-height:1.15;color:#a89cb8}
+.card .q{grid-column:1/-1;font-size:19px;line-height:1.2;margin:4px 0 0}
+.card .tip{grid-column:1/-1;font-size:19px;line-height:1.2;background:#14121f;padding:5px 8px;border-left:4px solid #6fc46f}
+.danger{color:#ff6070;letter-spacing:2px}
+.spoiler{filter:blur(6px);cursor:pointer;transition:filter .2s}.spoiler.open{filter:none}
+.tblw{overflow-x:auto}
+table.it{width:100%;border-collapse:collapse;font-size:19px;line-height:1.15}
+table.it th{font:9px/1.4 'Press Start 2P',monospace;color:#1a1208;background:#d8a640;padding:7px 6px;text-align:left;cursor:pointer;white-space:nowrap}
+table.it th:after{content:" \2195";opacity:.5}
+table.it td{padding:5px 6px;border-bottom:2px solid #2a2438;vertical-align:top}
+table.it tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.sw{display:inline-block;width:12px;height:12px;margin-right:5px;border:1px solid #000;vertical-align:middle}
+.stars{color:#e8c94a;white-space:nowrap}
+.tier{display:grid;grid-template-columns:64px 1fr;margin:0 0 6px;background:#14121f}
+.tier>b{display:flex;align-items:center;justify-content:center;font:20px 'Press Start 2P',monospace;color:#1a1208}
+.tier>div{padding:6px 10px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:#2a2438;padding:3px 8px 3px 4px;font-size:19px;line-height:1.2}
+.chip i{font:10px 'Press Start 2P',monospace;font-style:normal;margin-right:6px;padding:2px 3px;background:#000}
+.foot{text-align:center;color:#a89cb8;font-size:18px;padding:4px 10px 26px;line-height:1.3}
+.tunduk-ring a{color:#e8c94a}
+.gb-intro{margin:0 0 8px}.gb-form td{padding:3px;font-size:19px}.gb-form input,.gb-form textarea{background:#0e0c16;color:#e8e0cc;border:2px solid #3e3554;font:19px VT323,monospace;max-width:100%}
+.gb-form input[type=submit]{font:9px 'Press Start 2P',monospace;background:#6fc46f;color:#0e1a08;padding:8px;border:0;cursor:pointer}
+.gb-note{color:#6fc46f}.gb-count{color:#a89cb8}
+.gb-entry{background:#14121f;border-left:4px solid #d8a640;margin:10px 0;padding:6px 10px}.gb-date{color:#a89cb8;font-size:17px}.gb-reply{color:#6fc46f;margin:4px 0 0 14px}
+@media(max-width:700px){.cols{grid-template-columns:1fr}.top h1{font-size:15px}.panel{padding:12px 10px}.panel h2{font-size:11px}
+ .card{grid-template-columns:72px 1fr}.card img{width:72px;height:72px}.gb-form textarea{width:100%}.gb-form input[type=text]{width:100%}}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-kometa.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="wrap"><div class="top"><h1>STEPPE CRAWL <span>//</span> fan guide</h1>
+<p class="sub">unofficial · made by one player from Talas · not by the game's maker · the real game is at <a href="https://steppecrawl.online/">steppecrawl.online</a></p></div>
+<nav class="menu"><a href="index.html">home</a><a href="map.html">maps</a><a href="bestiary.html">bestiary</a><a href="items.html">items</a><a href="tiers.html">tier list</a><a href="guestbook.html">Guestbook</a></nav>
+<a class="official" href="https://steppecrawl.online/"><b>▶ PLAY THE REAL GAME: steppecrawl.online</b><br>
+free, in the browser, phone too · new address since 28 Oct 2026 (the old one is gone, your save stayed behind, mine too 😭)</a>
+<img class="banner" src="banner.png" width="960" height="288" alt="pixel drawing: a rider with an eagle on the night steppe, a balbal, Manas Peak far away">
+<div class="cols" style="margin-top:16px"><div>
+<div class="panel"><h2>what is this</h2>
+<p><b class="gold">Steppe Crawl</b> is a roguelike made in Talas. You ride out along the Qara-Chik road through ten valleys,
+each one a day farther from home, toward Manas Peak. In the wild regions off the road four clans have left their
+<b>tamgas</b>; three of them open the sealed cleft under the peak. Behind it, in the Hidden Valley of Janyl, Morkhan's
+Herald keeps the <b class="gold">Ene Malka</b>, the Mother Leaven. Take it and carry it all the way home. Death is permanent.</p>
+<p>I have played it since 0.8 (Nov 2024, the phone version), mostly on marshrutka 22 between Cottonwood and TSU,
+because forty minutes is exactly one valley. ~140 characters dead, 1 win. This site is everything I wish someone had
+told me in my first month. It's a fan site: <span class="red">I did not make the game</span>, I just love it.</p></div>
+<div class="panel"><h2>first run? read this</h2>
+<p>1. Take an <b>Iradi Baatyr</b> (the game's own advice, and it's right). Sabre, lamellar, shield, no thinking.<br>
+2. <b>o</b> explores, <b>Tab</b> fights, <b>5</b> rests. On the phone: tap to travel, tap twice to fire.<br>
+3. Rest <i>after</i> the valley is explored, never in the middle of it.<br>
+4. Unknown potion with 4+ in the stack? Probably kymyz or ak süt. Drink it when safe, not when dying.<br>
+5. The <b>White Yurts</b> turn up somewhere around valleys 2-4. Go in, pick a patron. St. Janyl if you don't know.<br>
+6. You don't need all four tamgas. Three. Skip the region that scares you.<br>
+7. Getting the Ene Malka is half the game. <span class="red">The valleys come after you on the way home.</span> Keep potions for it.</p></div>
+<div class="panel"><h2>fan art: "Tökö holds court"</h2>
+<img class="pix" src="fanart.png" width="960" height="600" alt="pixel drawing of a Berkutchi and her eagle facing Tökö the Marmot King and his marmots in a meadow">
+<p class="dim">my drawing, not a screenshot (the log is made up but it felt like this). Berkutchi + eagle vs Tökö the Marmot King, Kara-Oi Meadows.</p></div>
+</div><div>
+<div class="panel"><h2>seed of the week</h2>
+<div class="seed"><div class="dim">seed of the week · from 02.11.2026</div><div class="code">W45-KICHI-IRCHY-UMAY</div><p><b class="grn">Kichi Ïrchy</b>, patron <b class="gold">Umay</b></p><ul><li>no armour heavier than a chapan</li><li>must visit the White Yurts before valley 5</li><li>the Sands before the Kurgans</li></ul><p class="dim">the new address week. My run: died in Kara-Suu Canyon to a soodager archer. Bard life.</p></div>
+<p class="dim" style="margin-top:10px">There is no seed box in the game (every run is random), so a "seed" here is a
+<b>recipe</b>: people + calling + patron + rules. Play it, then write in the guestbook how far you got and the cause of death
+from your character file. Best result gets their name on next week's seed.</p>
+<h3>roll your own</h3>
+<button class="btn" onclick="roll()">🎲 ROLL A RECIPE</button>
+<div id="roll" class="dim">press the button</div>
+<h3>past weeks</h3><ul class="news" style="padding-left:18px"><li><span class="gold">W44-DEV-BAATYR-KAMBAR</span> <span class="dim">(26.10.2026)</span>: Dev-born Baatyr, Kambar-Ata. 11 people sent results. 2 got the Ene Malka. Dev-born is just strong, sorry.</li><li><span class="gold">W43-PERI-JAYCHY-TENGRI</span> <span class="dim">(19.10.2026)</span>: Peri Jaychy, Kök Tengri. 0 wins. A Peri has the HP of a lepyoshka. Sorry everyone.</li><li><span class="gold">W42-AT-BERKUTCHI-KYDYR</span> <span class="dim">(12.10.2026)</span>: At-Kishi Berkutchi, Kydyr-Ata. 1 win (aidana_tls, respect). The eagle died in valley 2 for everyone else.</li></ul></div>
+<div class="panel"><h2>site news</h2><ul class="news" style="padding-left:18px">
+<li><span class="gold">01.11.2026</span> links moved to steppecrawl.online. The game itself says it in "What's new" (0.9.4).</li>
+<li><span class="gold">14.10.2026</span> bestiary: Ak Börü sprite done (took 3 bus rides).</li>
+<li><span class="gold">09.08.2026</span> 0.9.3: dust devils no longer carry you through closed doors. RIP my best exploit.</li>
+<li><span class="gold">20.06.2026</span> item table is sortable now, click the headers.</li>
+<li><span class="gold">14.09.2025</span> site opened. Uyalar because Kündölük doesn't take new blogs.</li></ul></div>
+<div class="panel"><h2>friends</h2><p>
+<a href="../m22/index.html">marshrutka 22</a>: the comic about the bus I play this on<br>
+<a href="../kokordo/index.html">KÖK ORDO</a>: Temir's sky-steppe, the art I'd steal if I could<br>
+<a href="../tun/index.html">radio tün</a>: what I play with the sound off<br>
+<a href="https://steppecrawl.online/">steppecrawl.online</a>: official, the guide (? key) is good, read it</p></div>
+</div></div><script>
+var PE=['Iradi','Tash-Kishi','Peri','Dev-born','At-Kishi','Börü-kin','Ajdaha-born','Kichi'],
+CA=['Baatyr','Berkutchi','Ïrchy','Jaychy','Kashysh','Bakshy','Tabyp','Ulakchy','Soodager'],
+PA=['St. Janyl','Kambar-Ata','Umay','Kök Tengri','Kydyr-Ata'],
+RU=['no armour heavier than a chapan','no potions before valley 3','never rest in the open','Sands before Woods? impossible. Woods first, then all the Sands','take the first patron you meet','no ranged attacks','only walk, never use explore (o) in valleys 1-3','bring Tökö\'s court home (kill every marmot you see)','Old Kurgans before valley 9','drink every unknown potion the moment you find it'];
+function roll(){var r=function(a){return a[Math.floor(Math.random()*a.length)]};var p=r(PE),c=r(CA),g=r(PA),a=r(RU),b=r(RU);while(b==a)b=r(RU);
+if(c=='Bakshy'&&g=='St. Janyl')g='Kambar-Ata';
+var code='R-'+(p.split('-')[0].replace('Ö','O').replace('ü','u').toUpperCase())+'-'+c.replace('Ï','I').toUpperCase()+'-'+Math.floor(Math.random()*90+10);
+document.getElementById('roll').innerHTML='<span class="gold">'+code+'</span><br><b class="grn">'+p+' '+c+'</b>, patron <b class="gold">'+g+'</b><br>· '+a+'<br>· '+b;}
+</script>
+</div><div class="tunduk-ring" style="text-align:center;margin:18px auto 6px;padding:0 10px;font:20px/1.4 VT323,monospace;color:#e8e0cc"><a href="../kushfan/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../marshrut/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../marshrut/index.html','../shyrdak/index.html','../asman/index.html','../podval/index.html','../intourist/index.html','../tush/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div><div class="foot">dastan.bt · Talas · drawn on a laptop, written on marshrutka 22 · all tiles, sprites and maps on this site are my own fan art, the game uses different ones<br>
+names of monsters, items and places belong to Steppe Crawl · this guide is for game 0.9.4 · <a href="../top100.html"><img src="../img/cnt-crawl.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div>
+</body>
+</html>

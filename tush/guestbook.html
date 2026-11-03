@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Nunito:ital,wght@0,400;0,700;1,400&family=Neucha&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guestbook</title>
+<meta name="description" content="tüş: a dream dictionary from A to Z in the Iradi alphabet, with my grandmother&#x27;s gentle readings. horse, bread, water, a white camel, a marshrutka, a lost tooth... and a random-dream button">
+<meta name="keywords" content="dreams, сонник, тüş, түш, dream dictionary, dream meaning, grandmother, apa, бабушка, Nurzhan, сны, толкование снов">
+<link rel="canonical" href="https://uyalar.net/tush/guestbook.html">
+<meta property="og:title" content="Guestbook">
+<meta property="og:description" content="tüş: a dream dictionary from A to Z in the Iradi alphabet, with my grandmother&#x27;s gentle readings. horse, bread, water, a white camel, a marshrutka, a lost tooth... and a random-dream button">
+<meta property="og:url" content="https://uyalar.net/tush/guestbook.html">
+<meta property="og:image" content="https://uyalar.net/img/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="fav.png">
+<style type="text/css">
+
+*{box-sizing:border-box}
+:root{--ink:#5b4a72;--plum:#7a5a9a;--pink:#ff9ec7;--blue:#9fd2ff;--lav:#cdb8ff;--peach:#ffd3b0}
+html{background:#efe6ff}
+body{margin:0;color:var(--ink);font:16px/1.65 Nunito,Verdana,sans-serif;background:linear-gradient(170deg,#e7dcff 0%,#ffe0f0 30%,#ffeadb 55%,#dcefff 80%,#e7dcff 100%);min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:url(sparkle.png);opacity:.7;pointer-events:none;z-index:0}
+a{color:#b04f8a}
+.sky{position:relative;height:266px;overflow:hidden;z-index:1}
+.sky .cl{position:absolute;opacity:.92;animation:drift linear infinite}
+.sky .c1{top:22px;width:230px;animation-duration:70s;animation-delay:-20s}
+.sky .c2{top:120px;width:170px;animation-duration:95s;animation-delay:-60s}
+.sky .c3{top:60px;width:130px;animation-duration:55s;animation-delay:-5s;opacity:.7}
+@keyframes drift{from{transform:translateX(-260px)}to{transform:translateX(110vw)}}
+@media(prefers-reduced-motion:reduce){.sky .cl{animation:none;left:10%}}
+.sky .moon{position:absolute;left:50%;top:18px;width:128px;height:128px;margin-left:-64px;image-rendering:pixelated}
+.sky h1{position:absolute;left:0;right:0;top:152px;margin:0;text-align:center;font:600 64px/1 'Pixelify Sans',monospace;color:#fff;letter-spacing:4px;text-shadow:3px 3px 0 var(--pink),6px 6px 0 var(--blue)}
+.sky p{position:absolute;left:0;right:0;top:222px;margin:0;text-align:center;font-style:italic;color:var(--plum);padding:0 12px}
+.wrap{max-width:940px;margin:0 auto;padding:0 16px;position:relative;z-index:1}
+.menu{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:10px 0 22px}
+.menu a{font:17px 'Pixelify Sans',monospace;text-decoration:none;color:var(--plum);background:rgba(255,255,255,.7);border:2px solid #fff;border-radius:999px;padding:4px 16px;box-shadow:0 3px 0 rgba(122,90,154,.18)}
+.menu a:hover,.menu a.on{background:#fff;color:#b04f8a}
+.card{background:rgba(255,255,255,.72);border:2px solid #fff;border-radius:28px;padding:18px 22px;margin:0 0 20px;box-shadow:0 10px 30px rgba(150,120,200,.15)}
+h2{font:600 28px 'Pixelify Sans',monospace;color:#b04f8a;margin:0 0 8px;letter-spacing:1px}
+h3{font:600 20px 'Pixelify Sans',monospace;color:var(--plum);margin:14px 0 4px}
+.apa{font:21px/1.35 Neucha,'Comic Sans MS',cursive;color:#8a4f7a}
+.apa small{display:block;font:italic 14px Nunito,Verdana,sans-serif;color:#9a86b0}
+.machine{text-align:center}
+.machine button,.gb-form input[type=submit]{font:600 18px 'Pixelify Sans',monospace;color:#fff;background:linear-gradient(180deg,#ffb3d6,#c9a6ff);border:3px solid #fff;border-radius:999px;padding:8px 22px;margin:6px;cursor:pointer;box-shadow:0 4px 0 rgba(122,90,154,.3)}
+.machine button:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(122,90,154,.3)}
+.dream{display:none;margin:14px auto 0;max-width:620px;text-align:left;background:#fff;border-radius:26px;padding:16px 20px;border:3px dashed var(--lav)}
+.dream.on{display:block;animation:pop .35s ease}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
+.dream img{float:left;width:96px;height:96px;margin:0 14px 6px 0}
+.dream .w{font:600 22px 'Pixelify Sans',monospace;color:#b04f8a}
+.dream .t{font-size:14px;color:#9a86b0}
+.letters{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.letters a{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.8);border:2px solid #fff;font:600 22px 'Pixelify Sans',monospace;color:var(--plum);text-decoration:none;box-shadow:0 3px 0 rgba(122,90,154,.15)}
+.letters a:hover{background:var(--pink);color:#fff}
+.letters a.e{opacity:.45}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px}
+.tiles a{display:block;text-align:center;background:rgba(255,255,255,.65);border-radius:22px;padding:8px 4px 6px;text-decoration:none;color:var(--ink);border:2px solid #fff}
+.tiles a:hover{background:#fff;transform:translateY(-2px)}
+.tiles img{width:96px;height:96px;display:block;margin:0 auto}
+.tiles b{font:600 20px 'Pixelify Sans',monospace;color:#b04f8a}
+.tiles span{display:block;font-size:13px;color:#9a86b0;line-height:1.2}
+.let{display:grid;grid-template-columns:150px 1fr;gap:6px 20px;scroll-margin-top:10px}
+.let .pic{text-align:center}
+.let .pic img{width:140px;height:140px;display:block;margin:0 auto}
+.let .big{font:600 52px/1 'Pixelify Sans',monospace;color:#b04f8a;text-shadow:3px 3px 0 #fff,5px 5px 0 #d8c6ff;display:block;margin-top:-6px}
+.ent{padding:6px 0 10px;border-bottom:2px dotted #e8d8f8}
+.ent:last-child{border-bottom:0}
+.ent .hw{font:600 21px 'Pixelify Sans',monospace;color:#b04f8a}
+.ent .tr{font-size:14px;color:#9a86b0;margin-left:4px}
+.ent p{margin:4px 0}
+.ent .apa{margin:6px 0 0 0;padding-left:14px;border-left:4px solid #ffd0e6}
+.ent .note{font-size:14px;color:#8a7aa0;font-style:italic}
+.ent:target{background:#fff6fb;border-radius:14px}
+.rules{counter-reset:r;list-style:none;padding:0;margin:0}
+.rules li{counter-increment:r;position:relative;padding:8px 0 8px 54px;border-bottom:2px dotted #e8d8f8}
+.rules li:before{content:counter(r);position:absolute;left:0;top:6px;width:40px;height:40px;border-radius:50%;background:linear-gradient(#ffd0e6,#d8c6ff);color:#fff;font:600 20px/40px 'Pixelify Sans',monospace;text-align:center}
+.apa-pic{float:right;width:200px;height:200px;margin:0 0 10px 18px}
+.say{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.say div{background:#fff;border-radius:20px;padding:12px 16px;border:2px solid #f3e6ff}
+.gb-intro{text-align:center;font:18px 'Pixelify Sans',monospace;color:#b04f8a}
+.gb-form{background:rgba(255,255,255,.75);border:2px solid #fff;border-radius:26px;padding:14px;max-width:520px;margin:0 auto 18px}
+.gb-form table{width:100%}.gb-form td{font:15px 'Pixelify Sans',monospace;color:var(--plum)}
+.gb-form input[type=text],.gb-form textarea{width:100%;border:2px solid #ead9ff;border-radius:12px;font:15px Nunito,Verdana,sans-serif;padding:4px 8px;background:#fffafd}
+.gb-note{color:#b04f8a;text-align:center}
+.gb-count{text-align:center;color:#9a86b0;font-size:14px}
+.gb-entry{background:rgba(255,255,255,.72);border:2px solid #fff;border-radius:22px;padding:10px 16px;margin:10px 0}
+.gb-entry b{color:#b04f8a}
+.gb-date{font-size:12px;color:#9a86b0}
+.gb-reply{margin:6px 0 0 18px;font:19px/1.35 Neucha,'Comic Sans MS',cursive;color:#7a5a9a}
+.gb-reply b{font-family:Nunito,Verdana,sans-serif;font-size:14px}
+.foot{text-align:center;font-size:14px;color:var(--plum);padding:6px 0 30px}
+.foot img{vertical-align:middle}
+.tunduk-ring a{color:#7a5a9a!important}
+@media(max-width:620px){
+ .sky{height:250px}.sky h1{font-size:46px;top:128px}.sky p{top:186px;font-size:14px}.sky .moon{width:104px;height:104px;margin-left:-52px}
+ .let{grid-template-columns:1fr}.let .pic img{width:120px;height:120px}
+ .card{padding:14px 14px;border-radius:22px}
+ .apa-pic{float:none;display:block;margin:0 auto 10px}
+ .dream img{width:72px;height:72px}
+ .letters a{width:38px;height:38px;font-size:19px}
+}
+
+img{max-width:100%;height:auto}
+</style>
+<script>window.goatcounter=new Object();goatcounter.path=p=>location.host+p;</script>
+<script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QTS2XFLJD7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QTS2XFLJD7');</script>
+</head>
+<body>
+<div style="all:initial;display:block;background:#fff7e6;border-bottom:1px solid #e8a050;font:11px/1.3 Arial,Helvetica,sans-serif;color:#444;text-align:center;padding:3px 4px 4px"><div style="max-width:760px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px"><a href="../index.html" style="color:#2a5aa0;font:bold 11px Arial,sans-serif;text-decoration:none"><img src="../img/nest16.png" width="16" height="16" alt="" style="vertical-align:middle;border:0"> Uyalar.net</a><span style="font:11px Arial,sans-serif;color:#444">free hosting &middot; <a href="../create.html" style="color:#c25a00;font:11px Arial,sans-serif">build your nest!</a> &middot; <a href="../top100.html" style="color:#2a5aa0;font:11px Arial,sans-serif">TOP-100</a> &middot; <a href="../catalog/index.html" style="color:#2a5aa0;font:11px Arial,sans-serif">catalogue</a></span><a href="../advert.html"><img src="../img/ban-skazka.gif" width="468" height="60" alt="" style="display:block;max-width:100%;height:auto;border:0"></a></div></div>
+<div class="sky"><img class="cl c1" src="cloud1.png" alt=""><img class="cl c2" src="cloud2.png" alt=""><img class="cl c3" src="cloud3.png" alt="">
+<img class="moon" src="moon.gif" width="128" height="128" alt="a sleeping pixel moon"><h1>tüş</h1><p>түш · сон · a dream dictionary · A to Z, the way my apa reads them</p></div>
+<div class="wrap"><nav class="menu"><a href="index.html">tüş</a><a href="sozduk.html">A–Z</a><a href="apa.html">apa</a><a href="guestbook.html">Guestbook</a></nav><p class="gb-intro">☁ tell me a dream and I'll ask apa what it means ☁</p><form class="gb-form" onsubmit="this.querySelector('.gb-note').style.display='block';return false"><table><tr><td>Name:</td><td><input type="text" size="28"></td></tr><tr><td>E-mail:</td><td><input type="text" size="28"></td></tr><tr><td valign="top">Message:</td><td><textarea rows="5" cols="34"></textarea></td></tr><tr><td></td><td><input type="submit" value="send it to the clouds"></td></tr></table><p class="gb-note" style="display:none">☁ your dream floated away... (no scripts on uyalar, sorry!) write it to sabi.tush@attelkom.net, I read them to apa on Sundays ☁</p></form><p class="gb-count">Messages: 8</p><div class="gb-entry"><div class="gb-head"><b>ms_14</b> (Nurzhan) <span class="gb-date">04.07.2025</span></div><div class="gb-text">I dreamed ALL TWELVE cats of courtyard 14 were sitting in a lift and the lift went sideways. what does apa say</div><div class="gb-reply"><b>sabi:</b> apa says: a lift sideways means between two stages of life, and twelve cats means you have a big heart and a small flat. jakşılykka!</div></div>
+<div class="gb-entry"><div class="gb-head"><b>aruuke</b> (Talas) <span class="gb-date">19.10.2025</span></div><div class="gb-text">i dreamed my lamb kozu was a real sheep and she was very big and white. is it good</div><div class="gb-reply"><b>sabi:</b> white is good! a big white lamb, apa says, is a year with no worries. you are lucky</div></div>
+<div class="gb-entry"><div class="gb-head"><b>saikal</b> (Kara-Oi) <span class="gb-date">02.02.2026</span></div><div class="gb-text">my grandmother says a horse running toward you means a letter. yours says news. maybe it's the same</div><div class="gb-reply"><b>sabi:</b> apa says both grandmothers are right and the letter will have news in it</div></div>
+<div class="gb-entry"><div class="gb-head"><b>tuntolk_fan</b> (Nurzhan) <span class="gb-date">13.03.2026</span></div><div class="gb-text">every night during the long one i dreamed of a radio that only plays static. now it plays music. apa?</div><div class="gb-reply"><b>sabi:</b> apa: "the radio is the house's voice. static: the house was waiting. music: the house is happy." she didn't know about the long one. she knew anyway</div></div>
+<div class="gb-entry"><div class="gb-head"><b>emil.asman</b> (Talas) <span class="gb-date">21.05.2026</span></div><div class="gb-text">dreamed I was on the roof and all the stars went out except one. physics says no. what does your apa say?</div><div class="gb-reply"><b>sabi:</b> she says one star is a wish that comes true if you don't tell it. you just told the internet, Emil</div></div>
+<div class="gb-entry"><div class="gb-head"><b>Gulbara</b> (Talas) <span class="gb-date">08.08.2026</span></div><div class="gb-text">Thank you for this site. My mother read dreams the same way and I forgot most of it. I recognised the tooth and the dentist. She said exactly that.</div><div class="gb-reply"><b>sabi:</b> apa says all the grandmothers were in one school together. say salam to your mother from her</div></div>
+<div class="gb-entry"><div class="gb-head"><b>zaika</b> (Talas) <span class="gb-date">29.09.2026</span></div><div class="gb-text">dreamed of a door standing in a field!!! same as you!! pink door</div><div class="gb-reply"><b>sabi:</b> a pink door: both lives are fine and one of them has more snacks. (that last part is mine, not apa's)</div></div>
+<div class="gb-entry"><div class="gb-head"><b>tima</b> (Talas) <span class="gb-date">17.10.2026</span></div><div class="gb-text">dreamed I missed the 22. the next one came and Ermek-baike was driving both</div><div class="gb-reply"><b>sabi:</b> "a marshrutka that comes back is a chance that comes back". and two Ermeks is too many Ermeks, she says</div></div><div class="tunduk-ring" style="text-align:center;margin:22px auto 6px;font:15px Nunito,Verdana,sans-serif;color:#7a5a9a"><a href="../intourist/index.html">&larr; prev</a> &middot; <a href="../jany/ring.html"><img src="../jany/ring88.gif" width="88" height="31" alt="Tündük ring" style="vertical-align:middle;border:0;image-rendering:pixelated"></a> &middot; <a href="../komnata/index.html">next &rarr;</a> &middot; <a href="#" onclick="var r=['../komnata/index.html','../m22/index.html','../ostanovka/index.html','../tuntolk/index.html','../vostern/index.html','../mysyk/index.html','../tamga/index.html','../aulieata/index.html','../kozu/index.html','../kseroks/index.html','../jylky/index.html','../tun/index.html','../okuu/index.html','../stikerler/index.html','../kokordo/index.html','../kushfan/index.html','../crawl/index.html','../marshrut/index.html','../shyrdak/index.html','../asman/index.html','../podval/index.html','../intourist/index.html'];location.href=r[Math.floor(Math.random()*r.length)];return false">random</a></div>
+<div class="foot">sabi · Nurzhan, 4th mkr. · apa's sayings written down since 2019 · this is a dictionary, not a diary (my own dreams are mine) · <a href="../top100.html"><img src="../img/cnt-tush.gif" width="88" height="31" border="0" alt="Uyalar TOP-100" title="Uyalar TOP-100"></a></div></div>
+</body>
+</html>
